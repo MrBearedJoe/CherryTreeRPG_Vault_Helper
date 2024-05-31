@@ -137,7 +137,7 @@ echo "
 <div class='card-body'>
 <div class='row'>
 
-  <div class='col-3'>
+  <div class='col-lg-3 col-md-6 mb-2'>
   <div class='card p-0 border border-secondary bg-dark text-white'>
 <h6 class='card-header bg-secondary text-white py-1'>Mass Add Codes</h6>
 <div class='card-body p-2'>
@@ -153,7 +153,7 @@ echo "
   </div>
 
 
-  <div class='col-3'>
+  <div class='col-lg-3 col-md-6 mb-2'>
   <div class='card p-0 border border-secondary bg-dark text-white'>
   <h6 class='card-header bg-secondary text-white py-1'>Poll from not Check and Credit</h6>
   <div class='card-body p-2'>
@@ -170,7 +170,7 @@ echo "
   </div>
 
 
-  <div class='col-3'>
+  <div class='col-lg-3 col-md-6 mb-2'>
   <div class='card p-0 border border-secondary bg-dark text-white'>
   <h6 class='card-header bg-secondary text-white py-1'>Change Codes to Invalid</h6>
   <div class='card-body p-2'>
@@ -186,7 +186,7 @@ echo "
 
 
 
-  <div class='col-3'>
+  <div class='col-lg-3 col-md-6 mb-2'>
   <div class='card p-0 border border-secondary bg-dark text-white'>
   <h6 class='card-header bg-secondary text-white py-1'>Invalid Credited Codes</h6>
   <div class='card-body p-2'>
