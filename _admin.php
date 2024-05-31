@@ -133,45 +133,59 @@ echo "
 <div class='row'>
 
   <div class='col-3'>
+  <div class='card p-0 border border-secondary bg-dark text-white'>
+<h6 class='card-header bg-secondary text-white py-1'>Mass Add Codes</h6>
+<div class='card-body p-2'>
     <form action='?admin' method='POST'>
     <input  type='hidden' name='massAddCodes' value='massAddCodes'>
-      <label class='form-label  font-weight-bold'>Mass Add Codes: </label>
       <label  class='form-label'>Clear Current Codes?</label>  
       <input type='checkbox' name='clearCodes' value='yes'>
       <textarea  class='form-control form-control-sm mb-1' name='codes' placeholder='Codes. One Per Line'></textarea>
       <button class='btn btn-sm btn-primary' type='submit'>New/Add Codes</button>
     </form>
   </div>
+  </div>
+  </div>
 
 
   <div class='col-3'>
+  <div class='card p-0 border border-secondary bg-dark text-white'>
+  <h6 class='card-header bg-secondary text-white py-1'>Poll from not Check and Credit</h6>
+  <div class='card-body p-2'>
     <form action='?admin' method='POST'>
-      <label  class='form-label font-weight-bold'>Pull codes to credit to: </label><BR>
-      <label  class='form-label'>Random Spot?</label>  
-      <input type='checkbox' name='random' value='yes'>
+      <label  class='form-label'>Random Spots? <input type='checkbox' name='random' value='yes'></label>  
+      
       <input  class='form-control form-control-sm mb-1' type='hidden' name='creditAdd' value='creditAdd'>
       <input  class='form-control form-control-sm mb-1' type='text' name='creditTo' placeholder='Credit To:'>
       <input  class='form-control form-control-sm mb-1' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'>
       <button class='btn  btn-sm btn-primary' type='submit'>Add Credits</button>
     </form>
   </div>
+  </div>
+  </div>
 
 
   <div class='col-3'>
+  <div class='card p-0 border border-secondary bg-dark text-white'>
+  <h6 class='card-header bg-secondary text-white py-1'>Change Codes to Invalid</h6>
+  <div class='card-body p-2'>
     <form action='?admin' method='POST'>
-      <label class='form-label'>Change to Invalid</label>
       <input  class='form-control form-control-sm mb-1' type='hidden' name='invalidCodes' value='invalidCodes'>
       <input  class='form-control form-control-sm mb-1' name='creditTo' placeholder='Credit To (If not already)'>
       <textarea  class='form-control form-control-sm mb-1' name='codes' placeholder='Codes. One Per Line. No spaces after code, Just line break'></textarea>
       <button class='btn  btn-sm btn-primary' type='submit'>Change to Invalid</button>
     </form>
   </div>
+  </div>
+  </div>
 
 
 
   <div class='col-3'>
+  <div class='card p-0 border border-secondary bg-dark text-white'>
+  <h6 class='card-header bg-secondary text-white py-1'>Invalid Credited Codes</h6>
+  <div class='card-body p-2'>
     <form action='?admin' method='POST'>
-      <label class='form-label'>Invalid Credited</label>
       <input  class='form-control form-control-sm mb-1' type='hidden' name='invalidCredited' value='invalidCredited'>
       <input  class='form-control form-control-sm my-1' name='creditTo' placeholder='Invalid all Credited To: '>
       <button class='btn  btn-sm btn-primary d-block' type='submit'>Change Credited to Invalid</button>
@@ -182,6 +196,8 @@ echo "
       <button class='btn btn-sm btn-danger d-block' type='submit'>Change All Credited to Invalid</button>
 
     </form>
+  </div>
+  </div>
   </div>
 
 </div>
