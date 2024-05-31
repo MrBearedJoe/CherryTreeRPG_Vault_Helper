@@ -58,10 +58,19 @@ if ($_POST['creditAdd'] == "creditAdd") {
       if ($count == $_POST['numberOfCodes']) break;
     }
   }
-  foreach ($codesList as $codeList) $creditedList .= "$codeList ";
+  foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
   array_push($jsonData['logs'], ["Add Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);
-  echo "$creditedList";
+  echo "
+  <div class='alert alert-danger alert-dismissible' role='alert' 
+  style='width:10ch; position: fixed; top:2rem; left: 48vw; z-index:10; '><BR>
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  <button type='button' class='btn btn-danger' data-copy-code-btn>Copy</button>
+  <span data-copy-codes>
+  $creditedList
+  </span>
+  </div>
+  ";
 }
 
 if ($_POST['invalidCodes'] == "invalidCodes") {
