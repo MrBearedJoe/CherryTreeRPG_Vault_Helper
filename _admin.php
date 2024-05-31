@@ -15,7 +15,10 @@ if ($_GET['remove'] != "") {
 
 if ($_POST['massAddCodes'] == "massAddCodes") {
   $jsonData = openFile($filePath);
-  if ($_POST['clearCodes'] == "yes") $jsonData['codes'] = [];
+  if ($_POST['clearCodes'] == "yes") {
+    $jsonData['codes'] = [];
+    $jsonData['logs'] = [];
+  }
 
   $codes = isset($_POST['codes']) ? $_POST['codes'] : "";
   $codes = explode("\n", str_replace("\r", "", $codes));
