@@ -2,32 +2,33 @@
 $jsonData = openFile($filePath);
 echo "
 <div class='row'>
-<div class='col-12 py-1 px-4'>
+  <div class='col-12 py-1 px-4'>
 
-<div class='card border border-success bg-dark text-white'>
-<h6 class='card-header bg-success text-white'>Codes</h6>
-<div class='card-body p-0'>
-<table class='table table-sm table-dark my-3 border'>
-<tr>
-<th class='no-select'>Code</th>
-<th class='no-select'>Status</th>
-<th class='no-select'>Credit</th>
-</tr>
-";
+    <div class='card border border-success bg-dark text-white'>
+      <h6 class='card-header bg-success text-white'>Codes</h6>
+      <div class='card-body p-0'>
 
-foreach ($jsonData['codes'] as $code => $data) {
-  echo "<tr>
-  <td>$code </td>
-  <td class='no-select'>{$data['status']} </td>
-  <td class='no-select'>{$data['credit']}</td>
-  </tr>";
-}
+        <table class='table table-sm table-dark my-3 border'>
+          <tr>
+            <th class='no-select'>Code</th>
+            <th class='no-select'>Status</th>
+            <th class='no-select'>Credit</th>
+          </tr>
+          ";
 
-echo "
+          foreach ($jsonData['codes'] as $code => $data) {
+            echo "
+            <tr>
+              <td>$code</td>
+              <td class='no-select'>{$data['status']} </td>
+              <td class='no-select'>{$data['credit']}</td>
+            </tr>";
+          }
 
-</table>
-</div>
-</div>
-</div>
+        echo "
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 ";
