@@ -9,17 +9,17 @@ echo "
 <div class='card-body'>
 <table class='table table-sm table-dark my-3 border'>
 <tr>
-<th>Code</th>
-<th>Status</th>
-<th>Credit</th>
+<th class='no-select'>Code</th>
+<th class='no-select'>Status</th>
+<th class='no-select'>Credit</th>
 </tr>
 ";
 
 foreach ($jsonData['codes'] as $code => $data) {
   echo "<tr>
   <td>$code </td>
-  <td>{$data['status']} </td>
-  <td>{$data['credit']}</td>
+  <td class='no-select'>{$data['status']} </td>
+  <td class='no-select'>{$data['credit']}</td>
   </tr>";
 }
 
