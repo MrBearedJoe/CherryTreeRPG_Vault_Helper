@@ -13,7 +13,7 @@ if ($_POST['massAddCodes'] == "massAddCodes") {
       "credit" => "",
     ];
   }
-  array_push($jsonData['logs'], "Added Codes: {$_POST['codes']}");
+  array_push($jsonData['logs'], ["Added Codes: {$_POST['codes']}"]);
   updateFile($filePath, $jsonData);
 }
 
