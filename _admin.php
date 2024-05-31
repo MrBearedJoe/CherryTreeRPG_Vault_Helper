@@ -107,7 +107,7 @@ echo "
     <form action='?admin' method='POST'>
       <label class='form-label'>Change to Invalid</label><BR>
       <input  class='form-control' type='hidden' name='invalidCodes' value='invalidCodes'>
-      <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line'></textarea><Br>
+      <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line. No spaces after code, Just line break'></textarea><Br>
       <button class='btn btn-primary' type='submit'>Change to Invalid</button>
     </form>
   </div>
