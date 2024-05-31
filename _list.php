@@ -5,7 +5,12 @@ echo "
   <div class='col-12 py-1 px-4'>
 
     <div class='card border border-success bg-dark text-white'>
-      <h6 class='card-header bg-success text-white'>Codes</h6>
+      <h6 class='card-header bg-success text-white'>Codes 
+      </h6>
+      <span>
+      <input type='checkbox' id='invalidFilter'> 
+      <label for='invalidFilter'>Hide invalid</label>
+      </span>
       <div class='card-body p-0'>
 
         <div id='successCode'></div>
@@ -23,7 +28,7 @@ foreach ($jsonData['codes'] as $code => $data) {
   echo "
             <tr>
               <td $ifSuccess>$code</td>
-              <td class='no-select'>{$data['status']} </td>
+              <td class='no-select'>{$data['status']}</td>
               <td class='no-select'>{$data['credit']}</td>
             </tr>";
 }

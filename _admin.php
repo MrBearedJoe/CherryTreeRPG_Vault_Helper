@@ -127,14 +127,11 @@ echo "
 <div class='col-12 py-1 px-4'>
 
 <div class='card border border-danger bg-dark text-white'>
-<h5 class='card-header bg-danger text-white'>Admin</h5>
+<h5 class='card-header bg-danger text-white'>Admin 
 
-<form action='?admin' method='POST'>
-<div class='input-group input-group-sm'>
-<input class='form-control' type='numbers' name='success' placeholder='Correct Code!!'>
-<button class='btn btn-sm btn-success' type='submit'>Cracked</button>
-</div>
-</form>
+<button type='button' class='btn btn-success btn-sm float-right' data-bs-toggle='modal' data-bs-target='#correctCodeModal'>Correct Code
+</button>
+</h5>
 
 
 <div class='card-body'>
