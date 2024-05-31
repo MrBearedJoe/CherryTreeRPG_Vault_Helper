@@ -45,33 +45,42 @@ echo "
   <div class='col-12 py-1 px-4'>
 
       <div class='card border border-primary bg-dark text-white'>
-        <h5 class='card-header bg-primary text-white'>Stats</h5>
-        <div class='card-body'>
+        <h5 class='card-header bg-primary text-white p-1'>Stats</h5>
+        <div class='card-body p-2'>
 
-          <div class='row h4 px-2'>
+          <div class='row'>
 
           <div class='col'>
-            <div class='card p-2'>
-            Invalid: $totalNotChecked of $totalCount ($invalidPercent)<BR>
-            Credited: $creditedCount of $totalCount ($creditedPercent)<BR> 
-            Total Codes: $totalCount
+            <div class='card border-secondary'>
+            <h6 class='card-header p-1 bg-secondary text-white text-center'>Codes Done</h6>
+            <div class='card-body p-1'>
+            Invalid: <b>$totalNotChecked</b> of $totalCount ($invalidPercent)<BR>
+            Credited: <b>$creditedCount</b> of $totalCount ($creditedPercent)<BR> 
+            Total Codes: <b>$totalCount</b>
+            </div>
             </div>
           </div>
 
           <div class='col'>
-            <div class='card p-2'>
-            $creditersCount Users have helped crack the vault!
-            <small>Credits go to: $crediters</small>
+            <div class='card border-secondary'>
+              <h6 class='card-header p-1 bg-secondary text-white text-center'>Credits Go To</h6>
+              <div class='card-body p-1'>
+                <b>$creditersCount</b> Users have helped crack the vault!<hr class='bg-primary my-0'>
+                <small>$crediters</small>
+              </div>
             </div>
           </div>
 
 
           <div class='col'>
-            <div class='card p-2'>
-            Unique Numbers: $uniqueCount <BR>
-            Code Length: $digitsNeededCount <BR>
-            Numbers Needed: $uniqueDigitsList
+            <div class='card border-secondary'>
+              <h6 class='card-header p-1 bg-secondary text-white text-center'>Digit Info</h6>
+              <div class='card-body p-1'>
+                Unique Numbers: <b>$uniqueCount</b> <BR>
+                Code Length: <b>$digitsNeededCount</b> <BR>
+                Numbers Needed: <b>$uniqueDigitsList</b>
 
+              </div>
             </div>
           </div>
 
