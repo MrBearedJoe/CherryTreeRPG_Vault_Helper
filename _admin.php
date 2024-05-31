@@ -1,5 +1,13 @@
 <?php
 
+
+if ($_POST['removed'] != "") {
+  $jsonData = openFile($filePath);
+  unset($jsonData['codes'][$_GET['removed']]);
+  updateFile($filePath, $jsonData);
+  echo "Removed: {$_POST['removed']}";
+}
+
 if ($_POST['massAddCodes'] == "massAddCodes") {
   $jsonData = openFile($filePath);
   if ($_POST['clearCodes'] == "yes") $jsonData['codes'] = [];
