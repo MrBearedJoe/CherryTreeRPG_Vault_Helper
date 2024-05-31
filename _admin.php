@@ -80,6 +80,7 @@ if ($_POST['invalidCodes'] == "invalidCodes") {
   $codes = explode("\n", str_replace("\r", "", $codes));
 
   foreach ($codes as $code) {
+    if ($_POST['creditTo'] != "") $jsonData['codes'][$code]["credit"] = $_POST['creditTo'];
     $jsonData['codes'][$code]["status"] = "invalid";
   }
 
@@ -112,7 +113,7 @@ echo "
     <form action='?admin' method='POST'>
       <label  class='form-label font-weight-bold'>Pull codes to credit to: </label><BR>
       <label  class='form-label'>Random Spot?</label>  
-      <input type='checkbox' name='random' value='yes' checked><br>
+      <input type='checkbox' name='random' value='yes'><br>
       <input  class='form-control' type='hidden' name='creditAdd' value='creditAdd'>
       <input  class='form-control' type='text' name='creditTo' placeholder='Credit To:'><BR>
       <input  class='form-control' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'><br>
@@ -125,6 +126,7 @@ echo "
     <form action='?admin' method='POST'>
       <label class='form-label'>Change to Invalid</label><BR>
       <input  class='form-control' type='hidden' name='invalidCodes' value='invalidCodes'>
+      <input  class='form-control' name='creditTo' placeholder='Credit To (If not already)'><BR>
       <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line. No spaces after code, Just line break'></textarea><Br>
       <button class='btn btn-primary' type='submit'>Change to Invalid</button>
     </form>
