@@ -1,8 +1,7 @@
 <?php
-
-if ($_GET['success'] != "") {
+if ($_POST['success'] != "") {
   $jsonData = openFile($filePath);
-  $jsonData['codes'][$_GET['success']]['status'] = 'success';
+  $jsonData['codes'][$_POST['success']]['status'] = 'success';
   updateFile($filePath, $jsonData);
   echo "Success Code ADD: {$_GET['success']}";
 }
@@ -129,6 +128,15 @@ echo "
 
 <div class='card border border-danger bg-dark text-white'>
 <h5 class='card-header bg-danger text-white'>Admin</h5>
+
+<form action='?admin' method='POST'>
+<div class='input-group input-group-sm'>
+<input class='form-control' type='numbers' name='success' placeholder='Correct Code!!'>
+<button class='btn btn-sm btn-success' type='submit'>Cracked</button>
+</div>
+</form>
+
+
 <div class='card-body'>
 <div class='row'>
 
@@ -204,5 +212,28 @@ echo "
 </div>
 </div>
 </div>
+</div>
+
+
+
+
+<div class='modal fade' id='correctCodeModal' tabindex='-1'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title text-dark'>Correct Code</h5>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      </div>
+      <div class='modal-body'>
+      <form action='?admin' method='POST'>
+      <div class='input-group input-group-sm'>
+      <input class='form-control' type='numbers' name='success' placeholder='Correct Code!!'>
+      <button class='btn btn-sm btn-success' type='submit'>Cracked</button>
+      </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
 </div>
 ";
