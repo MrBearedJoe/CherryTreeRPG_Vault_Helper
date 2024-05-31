@@ -3,13 +3,17 @@ $jsonData = openFile($filePath);
 
 $totalCount = count($jsonData['codes']);
 $totalNotChecked = 0;
+$creditedCount = 0;
 $creditersCount = [];
 $uniqueCrediters = [];
 
 foreach ($jsonData['codes'] as $data) {
 
   if ($data['status'] == "invalid") $totalNotChecked++;
-  if ($data['credit'] != "") $creditersCount[$data['credit']] = $data['credit'];
+  if ($data['credit'] != "") {
+    $creditedCount++;
+    $creditersCount[$data['credit']] = $data['credit'];
+  }
   if ($data['credit'] != "" && !in_array($data['credit'], $uniqueCrediters)) array_push($uniqueCrediters, $data['credit']);
 }
 
@@ -26,6 +30,14 @@ foreach ($uniqueDigitsArr as $d) $uniqueDigitsList .= "$d ";
 $uniqueCount = count($uniqueDigitsArr);
 $digitsNeededCount = count($randomCodeSplitArr);
 
+
+$invalidPercent = ($totalNotChecked / $totalCount) * 100;
+$invalidPercent = number_format($invalidPercent, 2, '.', '') . "%";
+
+
+$creditedPercent = ($creditedCount / $totalCount) * 100;
+$creditedPercent = number_format($creditedPercent, 2, '.', '') . "%";
+
 echo "
 
 <div class='row'>
@@ -40,7 +52,8 @@ echo "
 
           <div class='col'>
             <div class='card p-2'>
-            Invalid: $totalNotChecked<BR> 
+            Invalid: $totalNotChecked of $totalCount ($invalidPercent)<BR>
+            Credited: $creditedCount of $totalCount ($creditedPercent)<BR> 
             Total Codes: $totalCount
             </div>
           </div>
