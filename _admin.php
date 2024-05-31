@@ -16,6 +16,7 @@ if ($_POST['massAddCodes'] == "massAddCodes") {
   $codes = explode("\n", str_replace("\r", "", $codes));
 
   foreach ($codes as $code) {
+    if ($code == "" || $code == " ") continue;
     $jsonData['codes'][$code] = [
       "status" => "not_checked",
       "credit" => "",
