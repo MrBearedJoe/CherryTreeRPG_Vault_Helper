@@ -23,13 +23,31 @@ if ($_POST['creditAdd'] == "creditAdd") {
   $count = 0;
   $codesList = [];
 
-  foreach ($jsonData['codes'] as $code => $data) {
-    if ($data['credit'] == "") {
-      $count++;
-      $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
-      array_push($codesList, $code);
+  if ($_POST['random'] == "yes") {
+    $numbersNeeded = $_POST['numberOfCodes'];
+    $randomCount = 0;
+    while ($randomCount != $numbersNeeded) {
+      $code = array_rand($jsonData['codes'], 1);
+      if (
+        $jsonData['codes'][$code]['credit'] == ""
+        && $jsonData['codes'][$code]['status'] == "not_checked"
+      ) {
+        $randomCount++;
+        $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
+        array_push($codesList, $code);
+      }
     }
-    if ($count == $_POST['numberOfCodes']) break;
+  } else {
+
+    foreach ($jsonData['codes'] as $code => $data) {
+
+      if ($data['credit'] == "") {
+        $count++;
+        $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
+        array_push($codesList, $code);
+      }
+      if ($count == $_POST['numberOfCodes']) break;
+    }
   }
   foreach ($codesList as $codeList) $creditedList .= "$codeList ";
   array_push($jsonData['logs'], ["Add Credited {$_POST['creditTo']} to: $creditedList"]);
@@ -62,10 +80,10 @@ echo "
 
   <div class='col-4'>
     <form action='?admin' method='POST'>
-      <label class='form-label'>Mass Add Codes: </label><BR>
+      <label class='form-label  font-weight-bold'>Mass Add Codes: </label><BR>
       <input  class='form-control' type='hidden' name='massAddCodes' value='massAddCodes'>
       <label  class='form-label'>Clear Current Codes?</label>  
-      <input type='checkbox' value='yes' checked><br>
+      <input type='checkbox' name='clearCodes' value='yes'><br>
       <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line'></textarea><BR>
       <button class='btn btn-primary' type='submit'>New/Add Codes</button>
     </form>
@@ -74,7 +92,9 @@ echo "
 
   <div class='col-4'>
     <form action='?admin' method='POST'>
-      <label  class='form-label'>Pull codes to credit to: </label><BR>
+      <label  class='form-label font-weight-bold'>Pull codes to credit to: </label><BR>
+      <label  class='form-label'>Random Spot?</label>  
+      <input type='checkbox' name='random' value='yes' checked><br>
       <input  class='form-control' type='hidden' name='creditAdd' value='creditAdd'>
       <input  class='form-control' type='text' name='creditTo' placeholder='Credit To:'><BR>
       <input  class='form-control' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'><br>
