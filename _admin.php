@@ -53,19 +53,20 @@ if ($_POST['invalidCodes'] == "invalidCodes") {
 
 echo "
 <div class='row'>
+<div class='col-12 py-1 px-4'>
 
-  <div class='col-12 h4'>Admin</div>
+<div class='card border border-danger bg-dark text-white'>
+<h5 class='card-header bg-danger text-white'>Admin</h5>
+<div class='card-body'>
+<div class='row'>
 
   <div class='col-4'>
     <form action='?admin' method='POST'>
       <label class='form-label'>Mass Add Codes: </label><BR>
       <input  class='form-control' type='hidden' name='massAddCodes' value='massAddCodes'>
-      <label  class='form-label'>Clear Current Codes?</label> 
-      <select name='clearCodes'  class='form-control'>
-      <option value='yes' selected>Yes</option>
-      <option value='no'>No</option>
-      </select><BR>
-      <textarea name='codes' placeholder='Codes. One Per Line'></textarea><BR>
+      <label  class='form-label'>Clear Current Codes?</label>  
+      <input type='checkbox' value='yes' checked><br>
+      <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line'></textarea><BR>
       <button class='btn btn-primary' type='submit'>New/Add Codes</button>
     </form>
   </div>
@@ -85,12 +86,15 @@ echo "
   <div class='col-4'>
     <form action='?admin' method='POST'>
       <label class='form-label'>Change to Invalid</label><BR>
-      <input  class='form-control' type='hidden' name='invalidCodes' value='invalidCodes'><BR>
+      <input  class='form-control' type='hidden' name='invalidCodes' value='invalidCodes'>
       <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line'></textarea><Br>
       <button class='btn btn-primary' type='submit'>Change to Invalid</button>
     </form>
   </div>
 
-  <hr class='bg-light my-2'>
+</div>
+</div>
+</div>
+</div>
 </div>
 ";
