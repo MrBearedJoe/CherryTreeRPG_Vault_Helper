@@ -1,1 +1,4 @@
-{"codes":{"000025":{"status":"invalid","credit":"Joseph"},"000052":{"status":"not_checked","credit":"Joseph"},"000205":{"status":"not_checked","credit":"Joseph"},"000225":{"status":"invalid","credit":"Joseph"},"000250":{"status":"invalid","credit":"Joseph"},"000252":{"status":"invalid","credit":"Joseph"},"000255":{"status":"invalid","credit":"Jess"}},"logs":[["Add Credited Joseph to: 000025 000052 000205 000225 000250 "],["Add Credited Joseph to: 000252 "],"Codes marched Invalid: 000025","Codes marched Invalid: 000225\r\n000252",["Codes marched Invalid: 000250"],["Codes marched Invalid: 000255"],["Add Credited Jess to: 000255 "]]}
+{
+  "codes": {},
+  "logs": []
+}
