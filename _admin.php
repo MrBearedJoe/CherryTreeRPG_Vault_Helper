@@ -1,5 +1,11 @@
 <?php
 
+if ($_GET['success'] != "") {
+  $jsonData = openFile($filePath);
+  $jsonData['codes'][$_GET['success']]['status'] = 'success';
+  updateFile($filePath, $jsonData);
+  echo "Success Code ADD: {$_GET['success']}";
+}
 
 if ($_GET['remove'] != "") {
   $jsonData = openFile($filePath);
@@ -65,7 +71,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
   <div class='alert alert-danger alert-dismissible' role='alert' 
   style='width:10ch; position: fixed; top:2rem; left: 48vw; z-index:10; '><BR>
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  <button type='button' class='btn btn-danger' data-copy-code-btn>Copy</button>
+  <button type='button' class='btn  btn-smbtn-danger' data-copy-code-btn>Copy</button>
   <span data-copy-codes>
   $creditedList
   </span>
@@ -88,6 +94,35 @@ if ($_POST['invalidCodes'] == "invalidCodes") {
   updateFile($filePath, $jsonData);
 }
 
+
+
+if ($_POST['invalidCredited'] == "invalidCredited") {
+  $jsonData = openFile($filePath);
+
+  foreach ($jsonData['codes'] as $code => $data) {
+    // echo "{$data['credit']} - {$_POST['creditTo']}";
+    if ($data['credit'] == $_POST['creditTo']) $jsonData['codes'][$code]["status"] = "invalid";
+  }
+
+  array_push($jsonData['logs'], ["All codes credited to {$_POST['creditTo']} are now Invalid"]);
+  updateFile($filePath, $jsonData);
+}
+
+
+if ($_POST['invalidAllCredited'] == "invalidAllCredited") {
+  $jsonData = openFile($filePath);
+
+  foreach ($jsonData['codes'] as $code => $data) {
+    // echo "{$code}-{$data['credit']}";
+    if ($data['credit'] != "") $jsonData['codes'][$code]["status"] = "invalid";
+  }
+
+  array_push($jsonData['logs'], ["All codes credited are now Invalid"]);
+  updateFile($filePath, $jsonData);
+}
+
+
+
 echo "
 <div class='row'>
 <div class='col-12 py-1 px-4'>
@@ -97,38 +132,55 @@ echo "
 <div class='card-body'>
 <div class='row'>
 
-  <div class='col-4'>
+  <div class='col-3'>
     <form action='?admin' method='POST'>
-      <label class='form-label  font-weight-bold'>Mass Add Codes: </label><BR>
-      <input  class='form-control' type='hidden' name='massAddCodes' value='massAddCodes'>
+    <input  type='hidden' name='massAddCodes' value='massAddCodes'>
+      <label class='form-label  font-weight-bold'>Mass Add Codes: </label>
       <label  class='form-label'>Clear Current Codes?</label>  
-      <input type='checkbox' name='clearCodes' value='yes'><br>
-      <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line'></textarea><BR>
-      <button class='btn btn-primary' type='submit'>New/Add Codes</button>
+      <input type='checkbox' name='clearCodes' value='yes'>
+      <textarea  class='form-control form-control-sm mb-1' name='codes' placeholder='Codes. One Per Line'></textarea>
+      <button class='btn btn-sm btn-primary' type='submit'>New/Add Codes</button>
     </form>
   </div>
 
 
-  <div class='col-4'>
+  <div class='col-3'>
     <form action='?admin' method='POST'>
       <label  class='form-label font-weight-bold'>Pull codes to credit to: </label><BR>
       <label  class='form-label'>Random Spot?</label>  
-      <input type='checkbox' name='random' value='yes'><br>
-      <input  class='form-control' type='hidden' name='creditAdd' value='creditAdd'>
-      <input  class='form-control' type='text' name='creditTo' placeholder='Credit To:'><BR>
-      <input  class='form-control' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'><br>
-      <button class='btn btn-primary' type='submit'>Add Credits</button>
+      <input type='checkbox' name='random' value='yes'>
+      <input  class='form-control form-control-sm mb-1' type='hidden' name='creditAdd' value='creditAdd'>
+      <input  class='form-control form-control-sm mb-1' type='text' name='creditTo' placeholder='Credit To:'>
+      <input  class='form-control form-control-sm mb-1' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'>
+      <button class='btn  btn-sm btn-primary' type='submit'>Add Credits</button>
     </form>
   </div>
 
 
-  <div class='col-4'>
+  <div class='col-3'>
     <form action='?admin' method='POST'>
-      <label class='form-label'>Change to Invalid</label><BR>
-      <input  class='form-control' type='hidden' name='invalidCodes' value='invalidCodes'>
-      <input  class='form-control' name='creditTo' placeholder='Credit To (If not already)'><BR>
-      <textarea  class='form-control' name='codes' placeholder='Codes. One Per Line. No spaces after code, Just line break'></textarea><Br>
-      <button class='btn btn-primary' type='submit'>Change to Invalid</button>
+      <label class='form-label'>Change to Invalid</label>
+      <input  class='form-control form-control-sm mb-1' type='hidden' name='invalidCodes' value='invalidCodes'>
+      <input  class='form-control form-control-sm mb-1' name='creditTo' placeholder='Credit To (If not already)'>
+      <textarea  class='form-control form-control-sm mb-1' name='codes' placeholder='Codes. One Per Line. No spaces after code, Just line break'></textarea>
+      <button class='btn  btn-sm btn-primary' type='submit'>Change to Invalid</button>
+    </form>
+  </div>
+
+
+
+  <div class='col-3'>
+    <form action='?admin' method='POST'>
+      <label class='form-label'>Invalid Credited</label>
+      <input  class='form-control form-control-sm mb-1' type='hidden' name='invalidCredited' value='invalidCredited'>
+      <input  class='form-control form-control-sm my-1' name='creditTo' placeholder='Invalid all Credited To: '>
+      <button class='btn  btn-sm btn-primary d-block' type='submit'>Change Credited to Invalid</button>
+    </form>
+    <hr class='mx-0 bg-white'>
+    <form action='?admin' method='POST'>
+      <input  class='form-control form-control-sm mb-1' type='hidden' name='invalidAllCredited' value='invalidAllCredited'>
+      <button class='btn btn-sm btn-danger d-block' type='submit'>Change All Credited to Invalid</button>
+
     </form>
   </div>
 
