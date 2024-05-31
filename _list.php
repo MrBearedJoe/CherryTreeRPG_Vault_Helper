@@ -8,6 +8,8 @@ echo "
       <h6 class='card-header bg-success text-white'>Codes</h6>
       <div class='card-body p-0'>
 
+        <div id='successCode'></div>
+
         <table class='table table-sm table-dark my-3 border'>
           <tr>
             <th class='no-select'>Code</th>
@@ -16,16 +18,17 @@ echo "
           </tr>
           ";
 
-          foreach ($jsonData['codes'] as $code => $data) {
-            echo "
+foreach ($jsonData['codes'] as $code => $data) {
+  $ifSuccess = ($data['status'] == "success") ? "data-success-code='$code'" : "";
+  echo "
             <tr>
-              <td>$code</td>
+              <td $ifSuccess>$code</td>
               <td class='no-select'>{$data['status']} </td>
               <td class='no-select'>{$data['credit']}</td>
             </tr>";
-          }
+}
 
-        echo "
+echo "
         </table>
       </div>
     </div>
