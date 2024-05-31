@@ -70,7 +70,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
   <div class='alert alert-danger alert-dismissible' role='alert' 
   style='width:10ch; position: fixed; top:2rem; left: 48vw; z-index:10; '><BR>
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  <button type='button' class='btn  btn-smbtn-danger' data-copy-code-btn>Copy</button>
+  <button type='button' class='btn btn-sm btn-danger' data-copy-code-btn>Copy</button>
   <span data-copy-codes>
   $creditedList
   </span>
@@ -142,10 +142,10 @@ echo "
 <h6 class='card-header bg-secondary text-white py-1'>Mass Add Codes</h6>
 <div class='card-body p-2'>
     <form action='?admin' method='POST'>
-    <input  type='hidden' name='massAddCodes' value='massAddCodes'>
-      <label  class='form-label'>Clear Current Codes?</label>  
+    <input type='hidden' name='massAddCodes' value='massAddCodes'>
+      <label class='form-label'>Clear Current Codes?</label> 
       <input type='checkbox' name='clearCodes' value='yes'>
-      <textarea  class='form-control form-control-sm mb-1' name='codes' placeholder='Codes. One Per Line'></textarea>
+      <textarea class='form-control form-control-sm mb-1' name='codes' placeholder='Codes. One Per Line'></textarea>
       <button class='btn btn-sm btn-primary' type='submit'>New/Add Codes</button>
     </form>
   </div>
@@ -158,12 +158,12 @@ echo "
   <h6 class='card-header bg-secondary text-white py-1'>Poll from not Check and Credit</h6>
   <div class='card-body p-2'>
     <form action='?admin' method='POST'>
-      <label  class='form-label'>Random Spots? <input type='checkbox' name='random' value='yes'></label>  
+      <label class='form-label'>Random Spots? <input type='checkbox' name='random' value='yes'></label>
       
-      <input  class='form-control form-control-sm mb-1' type='hidden' name='creditAdd' value='creditAdd'>
-      <input  class='form-control form-control-sm mb-1' type='text' name='creditTo' placeholder='Credit To:'>
-      <input  class='form-control form-control-sm mb-1' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'>
-      <button class='btn  btn-sm btn-primary' type='submit'>Add Credits</button>
+      <input class='form-control form-control-sm mb-1' type='hidden' name='creditAdd' value='creditAdd'>
+      <input class='form-control form-control-sm mb-1' type='text' name='creditTo' placeholder='Credit To:'>
+      <input class='form-control form-control-sm mb-1' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'>
+      <button class='btn btn-sm btn-primary' type='submit'>Add Credits</button>
     </form>
   </div>
   </div>
