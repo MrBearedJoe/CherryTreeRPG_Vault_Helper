@@ -59,7 +59,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
     }
   }
   foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
-  array_push($jsonData['logs'], ["Add Credited {$_POST['creditTo']} to: $creditedList"]);
+  array_push($jsonData['logs'], ["Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);
   echo "
   <div class='alert alert-danger alert-dismissible' role='alert' 
