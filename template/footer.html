@@ -34,7 +34,7 @@
     }
   }
 
-  const copyBtn = document.querySelector(`button[data-copy-code-btn]`)
+  const copyBtn = document.querySelector(`button[data-copy-btn]`)
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
       const copyBtn = document.querySelector(`span[data-copy-codes]`)
@@ -48,8 +48,6 @@
 
     })
   }
-
-
 
   function copyToClipboard(text) {
     var copyText = document.queryCommandSupported('copy');

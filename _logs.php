@@ -8,7 +8,7 @@ echo "
       >Logs <small class='text-muted'>Click/Tap to show logs</small></h5>
       <div class='card-body p-1 collapse' id='collapselogs'>
       ";
-
+$jsonData['logs'] = array_reverse($jsonData['logs']);
 foreach ($jsonData['logs'] as $key => $log) echo "<p class='my-1'>{$log[0]}</p>";
 
 echo "
