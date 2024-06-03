@@ -35,20 +35,21 @@ if ($_POST['massAddCodes'] == "massAddCodes") {
 }
 
 if ($_POST['creditAdd'] == "creditAdd") {
+  $_POST['creditTo'] = ($_POST['creditTo'] != "") ? $_POST['creditTo'] : "(Blank)";
   $jsonData = openFile($filePath);
 
   $count = 0;
   $codesList = [];
 
   if ($_POST['random'] == "yes") {
-    $numbersNeeded = $_POST['numberOfCodes'];
     $randomCount = 0;
-    while ($randomCount != $numbersNeeded) {
+    while ($randomCount != $_POST['numberOfCodes']) {
       $code = array_rand($jsonData['codes'], 1);
       if (
         $jsonData['codes'][$code]['credit'] == ""
         && $jsonData['codes'][$code]['status'] == "not_checked"
       ) {
+
         $randomCount++;
         $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
         array_push($codesList, $code);
@@ -63,9 +64,11 @@ if ($_POST['creditAdd'] == "creditAdd") {
         $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
         array_push($codesList, $code);
       }
+
       if ($count == $_POST['numberOfCodes']) break;
     }
   }
+  
   foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
   array_push($jsonData['logs'], ["Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);

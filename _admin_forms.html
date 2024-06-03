@@ -34,10 +34,9 @@
     <div class='card-body p-2'>
       <form action='?admin' method='POST'>
         <label class='form-label'>Random Spots? <input type='checkbox' name='random' value='yes'></label>
-        
         <input class='form-control form-control-sm mb-1' type='hidden' name='creditAdd' value='creditAdd'>
         <input class='form-control form-control-sm mb-1' type='text' name='creditTo' placeholder='Credit To:'>
-        <input class='form-control form-control-sm mb-1' type='number' step='1' name='numberOfCodes' placeholder='How many you need?'>
+        <input class='form-control form-control-sm mb-1' type='number' step='1' name='numberOfCodes' placeholder='How many you need?' required>
         <button class='btn btn-sm btn-primary' type='submit'>Add Credits</button>
       </form>
     </div>
