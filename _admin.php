@@ -131,8 +131,10 @@ if ($_POST['hint'] == "hint") {
   foreach ($jsonData['codes'] as $code => $data) {
     if ($data['status'] == "invalid") continue; //Skip currently invalid codes
     $placement = $_POST['place'] - 1; //convert placement to index
+    $codeStr = "$code"; //cover number/key/index to string
+    $code_placement_number = $codeStr[$placement]; //string index to single character
 
-    if ($code[$placement] != $_POST['digit']) {
+    if ($codeStr[$placement] != $_POST['digit']) {
       $jsonData['codes'][$code]["status"] = "invalid";
       $jsonData['codes'][$code]["credit"] = "(Hint)";
       array_push($codesList, $code);
