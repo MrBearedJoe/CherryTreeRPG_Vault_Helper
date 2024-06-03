@@ -1,5 +1,4 @@
 <?php
-$jsonData = openFile($filePath);
 echo "
 <div class='row'>
   <div class='col-12 py-1 px-4'>
