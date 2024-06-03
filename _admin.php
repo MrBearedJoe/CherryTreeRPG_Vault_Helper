@@ -123,4 +123,22 @@ if ($_POST['invalidAllCredited'] == "invalidAllCredited") {
   updateFile($filePath, $jsonData);
 }
 
+if ($_POST['hint'] == "hint") {
+  if ($_POST['place'] == 0 || $_POST['place'] > 8) exit;
+  $jsonData = openFile($filePath);
+  $codesList = [];
+  foreach ($jsonData['codes'] as $code => $data) {
+    $placement = $_POST['place'] - 1;
+
+    if ($code[$placement] != $_POST['digit']) {
+      $jsonData['codes'][$code]["status"] = "invalid";
+      $jsonData['codes'][$code]["credit"] = "(Hint)";
+      array_push($codesList, $code);
+    }
+  }
+  foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
+
+  array_push($jsonData['logs'], ["Add Hint of {$_POST['digit']} at place {$_POST['place']} for codes: $creditedList"]);
+  updateFile($filePath, $jsonData);
+}
 include_once "_admin_forms.html";
