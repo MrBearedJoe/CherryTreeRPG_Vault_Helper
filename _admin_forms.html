@@ -22,7 +22,7 @@
                   <label class="form-label">Clear Current Codes?</label>
                   <input type="checkbox" name="clearCodes" value="yes" />
                   <textarea class="form-control form-control-sm mb-1" name="codes"
-                    placeholder="Codes. One Per Line"></textarea>
+                    placeholder="Codes. One Per Line" rows='3' required></textarea>
                   <button class="btn btn-sm btn-primary" type="submit">
                     New/Add Codes
                   </button>
@@ -65,7 +65,7 @@
                   <input class="form-control form-control-sm mb-1" name="creditTo"
                     placeholder="Credit To (If not already)" />
                   <textarea class="form-control form-control-sm mb-1" name="codes"
-                    placeholder="Codes. One Per Line. No spaces after code, Just line break"></textarea>
+                    placeholder="Codes. One Per Line. No spaces after code, Just line break" rows='3' required></textarea>
                   <button class="btn btn-sm btn-primary" type="submit">
                     Change to Invalid
                   </button>
@@ -84,7 +84,7 @@
                   <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCredited"
                     value="invalidCredited" />
                   <input class="form-control form-control-sm my-1" name="creditTo"
-                    placeholder="Invalid all Credited To: " />
+                    placeholder="Invalid all Credited To: " required />
                   <button class="btn btn-sm btn-primary d-block" type="submit">
                     Change Credited to Invalid
                   </button>
