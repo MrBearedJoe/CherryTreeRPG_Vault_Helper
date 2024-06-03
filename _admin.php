@@ -2,15 +2,10 @@
 if ($_POST['success'] != "") {
   $jsonData = openFile($filePath);
   $jsonData['codes'][$_POST['success']]['status'] = 'success';
-  updateFile($filePath, $jsonData);
-  echo "Success Code ADD: {$_GET['success']}";
-}
+  array_push($jsonData['logs'], ["CRACKED! Correct Code ADD: {$_GET['success']}. Status is now success"]);
 
-if ($_GET['remove'] != "") {
-  $jsonData = openFile($filePath);
-  unset($jsonData['codes'][$_GET['remove']]);
   updateFile($filePath, $jsonData);
-  echo "Removed: {$_GET['remove']}";
+  echo "";
 }
 
 if ($_POST['massAddCodes'] == "massAddCodes") {
