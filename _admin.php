@@ -123,12 +123,14 @@ if ($_POST['invalidAllCredited'] == "invalidAllCredited") {
   updateFile($filePath, $jsonData);
 }
 
+//STILL TESTING!!!
 if ($_POST['hint'] == "hint") {
-  if ($_POST['place'] == 0 || $_POST['place'] > 8) exit;
+  if ($_POST['place'] == 0) exit; //placement can not be 0 and shouldn't be over 7 currently
   $jsonData = openFile($filePath);
   $codesList = [];
   foreach ($jsonData['codes'] as $code => $data) {
-    $placement = $_POST['place'] - 1;
+    if ($data['status'] == "invalid") continue; //Skip currently invalid codes
+    $placement = $_POST['place'] - 1; //convert placement to index
 
     if ($code[$placement] != $_POST['digit']) {
       $jsonData['codes'][$code]["status"] = "invalid";
