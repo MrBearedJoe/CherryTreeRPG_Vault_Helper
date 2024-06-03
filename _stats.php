@@ -44,7 +44,10 @@ echo "
   <div class='col-12 py-1 px-4'>
 
       <div class='card border border-primary bg-dark text-white'>
-        <h5 class='card-header bg-primary text-white p-1'>Stats</h5>
+        <h5 class='card-header bg-primary text-white p-1'>
+          <img src='./images/vault.png' alt='Stats: image of Vault door' height='18' class='ms-3' style='margin-top:-0.4rem;'> 
+          Stats
+        </h5>
         <div class='card-body p-2'>
           <div class='row'>
 
