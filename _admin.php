@@ -73,15 +73,25 @@ if ($_POST['creditAdd'] == "creditAdd") {
   array_push($jsonData['logs'], ["Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);
   echo "
-  <div class='alert alert-danger alert-dismissible' role='alert' 
-  style='width:10ch; position: fixed; top:2rem; left: 48vw; z-index:10; '><BR>
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  <hr>
-  <button type='button' class='btn btn-sm btn-danger' data-copy-btn>Copy</button>
-  <span data-copy-codes>
-  $creditedList
-  </span>
+  <div id='pulledCodes' class='modal' tabindex='-1'>
+  <div class='modal-dialog modal-dialog-scrollable modal-sm'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title'>Pulled Codes</h5>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      </div>
+      <div class='modal-body'>
+      <button type='button' class='btn btn-sm btn-danger' data-copy-btn>Copy</button>
+      <span data-copy-codes>
+      $creditedList
+      </span>
+      </div>
+    </div>
   </div>
+</div>
+<button type='button' class='btn btn-sm btn-primary' data-bs-toggle='modal' data-bs-target='#pulledCodes'>
+
+</button>
   ";
 }
 
