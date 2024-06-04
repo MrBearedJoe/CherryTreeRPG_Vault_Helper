@@ -155,4 +155,4 @@ if ($_POST['hint'] == "hint") {
   array_push($jsonData['logs'], ["Add Hint of {$_POST['digit']} at place {$_POST['place']} for codes: $creditedList"]);
   updateFile($filePath, $jsonData);
 }
-include_once "_admin_forms.html";
+include_once "./sections/_admin_forms.html";

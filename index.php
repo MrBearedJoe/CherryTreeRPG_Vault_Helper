@@ -1,14 +1,14 @@
 <?php
 include_once "./template/header.html";
 
-$filePath = "./json.json";
+$filePath = "./src/json.json";
 include_once "./_functions.php";
 
-if (isset($_GET['admin'])) include_once "_admin.php";
+if (isset($_GET['admin'])) include_once "./sections/_admin.php";
 
 $jsonData = openFile($filePath);
-include_once "./_stats.php";
-include_once "./_list.php";
-include_once "./_logs.php";
+include_once "./sections/_stats.php";
+include_once "./sections/_list.php";
+include_once "./sections/_logs.php";
 
 include_once "./template/footer.html";
