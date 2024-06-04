@@ -77,6 +77,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
       </div>
       <div class='modal-body'>
+      <small>Copy Btn currently not working</small>
       <button type='button' class='btn btn-sm btn-danger' data-copy-btn>Copy</button>
       <span data-copy-codes>
       $creditedList

@@ -2,23 +2,23 @@
 $jsonData = openFile($filePath);
 
 $totalCount = count($jsonData['codes']);
-$totalNotChecked = 0;
+$total_NotChecked_Count = 0;
 $creditedCount = 0;
-$creditorsCount = [];
+$creditorsList = [];
 $uniqueCreditors = [];
 
 foreach ($jsonData['codes'] as $data) {
-  if ($data['status'] == "invalid") $totalNotChecked++;
+  if ($data['status'] == "invalid") $total_NotChecked_Count++;
   if ($data['credit'] != "") {
     $creditedCount++;
-    $creditorsCount[$data['credit']] = $data['credit'];
+    $creditorsList[$data['credit']] = $data['credit'];
     if (!in_array($data['credit'], $uniqueCreditors)) array_push($uniqueCreditors, $data['credit']);
   }
 }
 
 $creditors = '';
 foreach ($uniqueCreditors as $uniqueCreditor) $creditors .= "$uniqueCreditor ";
-$creditorsCount = count($creditorsCount);
+$creditorsList = count($creditorsList);
 
 $randomCode = array_rand($jsonData['codes'], 1);
 
@@ -30,7 +30,7 @@ $uniqueCount = count($uniqueDigitsArr);
 $digitsNeededCount = count($randomCodeSplitArr);
 
 
-$invalidPercent = ($totalNotChecked / $totalCount) * 100;
+$invalidPercent = ($total_NotChecked_Count / $totalCount) * 100;
 $invalidPercent = number_format($invalidPercent, 2, '.', '') . "%";
 
 
@@ -66,7 +66,7 @@ echo "
               <div class='card border-secondary'>
                 <h6 class='card-header p-1 bg-secondary text-white text-center'>Codes Done</h6>
                 <div class='card-body p-1'>
-                  Invalid: <b>$totalNotChecked</b> of $totalCount ($invalidPercent)<BR>
+                  Invalid: <b>$total_NotChecked_Count</b> of $totalCount ($invalidPercent)<BR>
                   Credited: <b>$creditedCount</b> of $totalCount ($creditedPercent)<BR> 
                   Total Codes: <b>$totalCount</b>
                 </div>
@@ -77,7 +77,7 @@ echo "
               <div class='card border-secondary'>
                 <h6 class='card-header p-1 bg-secondary text-white text-center'>Credits Go To</h6>
                 <div class='card-body p-1'>
-                  <b>$creditorsCount</b> Users have helped crack the vault!<hr class='bg-primary my-0'>
+                  <b>$creditorsList</b> Users have helped crack the vault!<hr class='bg-primary my-0'>
                   <small>$creditors</small>
                 </div>
               </div>
