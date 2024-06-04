@@ -6,10 +6,10 @@ function openFile($filePath)
   return json_decode($file, true);
 }
 
-function updateFile($filePath, $JSONdates)
+function updateFile($filePath, $JSON_changes)
 {
   $fp = fopen($filePath, 'w');
-  fwrite($fp, json_encode($JSONdates));
+  fwrite($fp, json_encode($JSON_changes));
   fclose($fp);
 }
 
