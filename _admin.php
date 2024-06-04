@@ -1,4 +1,5 @@
 <?php
+if ($_POST) $_POST = sanitize($_POST);
 if ($_POST['success'] != "") {
   $jsonData = openFile($filePath);
   $jsonData['codes'][$_POST['success']]['status'] = 'success';
