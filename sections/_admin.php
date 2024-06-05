@@ -30,6 +30,34 @@ if ($_POST['massAddCodes'] == "massAddCodes") {
   updateFile($filePath, $jsonData);
 }
 
+if ($_POST['importFile'] == "importFile" && $_FILES['csv']) {
+
+  $tmpName = $_FILES['csv']['tmp_name'];
+  $csvArr = array_map('str_getcsv', file($tmpName));
+  // print_r($csvArr);
+  $count = 0;
+
+  $jsonData = openFile($filePath);
+  $jsonData['codes'] = [];
+  $jsonData['logs'] = [];
+
+  for ($i = 1; $i < count($csvArr); $i++) {
+    if ($csvArr[$i][0] == "TRUE" || $csvArr[$i][0] == "FALSE") "";
+    else continue;
+
+    $code_status = ($csvArr[$i][0] == "TRUE") ? "invalid" : "not_checked";
+    $code_numbers = str_replace(" ", "", $csvArr[$i][1]);
+    $code_credit = ($csvArr[$i][2] != "") ? $csvArr[$i][2] : "";
+
+    $jsonData['codes'][$code_numbers] = [
+      "status" => $code_status,
+      "credit" => $code_credit,
+    ];
+  }
+  array_push($jsonData['logs'], ["Added Codes: {$_POST['codes']}"]);
+  updateFile($filePath, $jsonData);
+}
+
 if ($_POST['creditAdd'] == "creditAdd") {
   $_POST['creditTo'] = ($_POST['creditTo'] != "") ? $_POST['creditTo'] : "(Blank)";
   $jsonData = openFile($filePath);
