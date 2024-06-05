@@ -55,6 +55,10 @@ echo "
         <div class='card-body p-2'>
           <div class='row'>
 
+          ";
+if (!isset($_GET['admin'])) include_once "./sections/_user_form.html";
+echo "
+
             <div class='col'>
               <div class='card border-secondary'>
                 <h6 class='card-header p-1 bg-secondary text-white text-center'>Digit Info</h6>
