@@ -22,7 +22,7 @@ $datalistOfCreditor = "<datalist id='creditors'>";
 foreach ($uniqueCreditors as $uniqueCreditor) {
   if ($uniqueCreditor == "(Hint)" || $uniqueCreditor == "(Blank)") continue;
   $random_keys = array_rand($randomColors, 1);
-  $creditors .= "<badge class='badge text-bg-{$randomColors[$random_keys]} mx-1'>@$uniqueCreditor</badge>";
+  $creditors .= "<badge class='badge text-bg-{$randomColors[$random_keys]} mx-1'>@$uniqueCreditor&nbsp;</badge>";
   $datalistOfCreditor .= "<option value='$uniqueCreditor'>$uniqueCreditor</options>";
 }
 $datalistOfCreditor .= "</datalist>";
