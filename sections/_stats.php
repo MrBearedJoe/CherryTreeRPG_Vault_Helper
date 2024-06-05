@@ -24,7 +24,7 @@ foreach ($uniqueCreditors as $uniqueCreditor) {
 }
 $creditorsList = count($creditorsList);
 
-$randomCode = array_rand($jsonData['codes'], 1);
+$randomCode = ($totalCount > 0) ? array_rand($jsonData['codes'], 1) : "";
 
 $randomCodeSplitArr = str_split($randomCode);
 $uniqueDigitsArr = array_unique(str_split($randomCode));
