@@ -16,8 +16,12 @@ foreach ($jsonData['codes'] as $data) {
   }
 }
 
+$randomColors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', ''];
 $creditors = '';
-foreach ($uniqueCreditors as $uniqueCreditor) $creditors .= "$uniqueCreditor ";
+foreach ($uniqueCreditors as $uniqueCreditor) {
+  $random_keys = array_rand($randomColors, 1);
+  $creditors .= "<badge class='badge text-bg-{$randomColors[$random_keys]} mx-1'>$uniqueCreditor</badge>";
+}
 $creditorsList = count($creditorsList);
 
 $randomCode = array_rand($jsonData['codes'], 1);
