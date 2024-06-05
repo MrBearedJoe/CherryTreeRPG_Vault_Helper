@@ -65,6 +65,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
     }
   }
 
+  $rowSize = $_POST["numberOfCodes"] + 1;
   foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
   array_push($jsonData['logs'], ["Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);
@@ -76,12 +77,11 @@ if ($_POST['creditAdd'] == "creditAdd") {
         <h5 class='modal-title'>Pulled Codes</h5>
         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
       </div>
-      <div class='modal-body'>
-      <small>Copy Btn currently not working</small>
-      <button type='button' class='btn btn-sm btn-danger' data-copy-btn>Copy</button>
-      <span data-copy-codes>
-      $creditedList
-      </span>
+      <div class='modal-body' id='copyCodes'>
+        <div class='d-grid'>
+          <button type='button' class='btn btn-sm btn-danger mb-1' >Copy (Under Construction)</button>
+        </div>
+        <textarea rows='$rowSize' class='form-control'>$creditedList</textarea>
       </div>
     </div>
   </div>
