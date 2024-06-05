@@ -5,33 +5,22 @@
         <img src='./images/vein.png' alt='Admin picture of Vein' height='24' class='ms-2' 
         style='margin-top:-0.4rem;border-radius: 3rem;'> 
         Admin
-        <button type="button" class="btn btn-success btn-sm float-right" data-bs-toggle="modal"
+        <button type="button" class="btn btn-success btn-sm mx-2" data-bs-toggle="modal"
           data-bs-target="#correctCodeModal">
           Correct Code
         </button>
+
+        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+        data-bs-target="#generateNewCodesModal">
+        Generate New Codes and Add to List
+      </button>
+
+
       </h5>
 
       <div class="card-body p-1">
         <div class="row g-1">
-          <div class="col-lg-3 col-md-6">
-            <div class="card p-0 border border-secondary bg-dark text-white">
-              <h6 class="card-header bg-secondary text-white py-1">
-                Mass Add Codes
-              </h6>
-              <div class="card-body p-2">
-                <form action="?admin" method="POST">
-                  <input type="hidden" name="massAddCodes" value="massAddCodes" />
-                  <label class="form-label">Clear Current Codes?</label>
-                  <input type="checkbox" name="clearCodes" value="yes" />
-                  <textarea class="form-control form-control-sm mb-1" name="codes"
-                    placeholder="Codes. One Per Line" rows='3' required></textarea>
-                  <button class="btn btn-sm btn-primary" type="submit">
-                    New/Add Codes
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
+
 
           <div class="col-lg-3 col-md-6">
             <div class="card p-0 border border-secondary bg-dark text-white">
@@ -138,7 +127,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-dark">Correct Code</h5>
+        <h5 class="modal-title">Correct Code</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -154,3 +143,86 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="modal fade" id="generateNewCodesModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Generate New Codes & Mass Add Codes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="generateCodesForm">
+
+        <div class='card p-0 my-2 border-success'>
+          <h5 class="card-header bg-success text-white">Generate Codes and Add to Form below</h5>
+          <div class='card-body p-2'>
+            <label class="form-label">Unique Digits <em>ex: 1,2,3,</em></label>
+            <input class="form-control form-control-sm" type="numbers" name="digits" placeholder="Digits: ex: 1,2,3,4,5" />
+            <label class="form-label">Code Length</label>
+            <input class="form-control form-control-sm" type="numbers" name="codeLength" placeholder="How Many?" />
+            <button class="btn btn-sm btn-success my-2" type="button" onclick="generateNewCodes()">
+              Generate and Add Codes to Textarea
+            </button>
+          </div>
+        </div>
+
+
+        
+        <div class='card p-0 border-danger'>
+          <h5 class="card-header bg-danger text-white">Mass Add/Replace in list.</h5>
+          <div class='card-body p-2'>
+            <form action="?admin" method="POST">
+              <input type="hidden" name="massAddCodes" value="massAddCodes" />
+              <label class="form-label">Clear Current Codes?</label>
+              <input type="checkbox" name="clearCodes" value="yes" checked/>
+              <textarea class="form-control form-control-sm mb-1" name="codes"
+                placeholder="Codes. One Per Line" rows='3' required></textarea>
+              <button class="btn btn-sm btn-danger" type="submit">
+                New/Add Codes to List
+              </button>
+            </form>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+function generateCombinations(digits, length) {
+  let combinations = [];
+  const recursiveGenerate = (prefix, remainingLength) => {
+    if (remainingLength === 0) {
+      combinations.push(prefix);
+      return;
+    }
+    for (let digit of digits) {
+      recursiveGenerate(prefix + digit, remainingLength - 1);
+    }
+  };
+  recursiveGenerate("", length);
+  return combinations.filter((combination) => {
+    return digits.every((digit) => combination.includes(digit));
+  });
+}
+function generateNewCodes(){
+  const digits = document.querySelector(`#generateCodesForm input[name="digits"]`).value.split(",")
+  let length = document.querySelector(`#generateCodesForm input[name="codeLength"]`).value
+  
+  const combinations = generateCombinations(digits, length);
+  combinations.value = ``
+  for (let c of combinations) {
+    document.querySelector(`#generateCodesForm textarea[name="codes"]`).value += `${c}\r\n`;
+    }
+}
+
+
+
+</script>
