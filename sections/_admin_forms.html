@@ -39,8 +39,8 @@
                   <label class="form-label">Random Spots?
                     <input type="checkbox" name="random" value="yes" /></label>
                   <input class="form-control form-control-sm mb-1" type="hidden" name="creditAdd" value="creditAdd" />
-                  <input class="form-control form-control-sm mb-1" type="text" name="creditTo"
-                    placeholder="Credit To:" />
+                  <input class="form-control form-control-sm mb-1" name="creditTo"
+                    placeholder="Credit To:" list="creditors" />
                   <input class="form-control form-control-sm mb-1" type="number" step="1" name="numberOfCodes"
                     placeholder="How many you need?" required />
                   <button class="btn btn-sm btn-primary" type="submit">
@@ -61,7 +61,7 @@
                   <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCodes"
                     value="invalidCodes" />
                   <input class="form-control form-control-sm mb-1" name="creditTo"
-                    placeholder="Credit To (If not already) *optional" />
+                    placeholder="Credit To (If not already) *optional"  list="creditors" />
                   <textarea class="form-control form-control-sm mb-1" name="codes"
                     placeholder="Codes. One Per Line. No spaces after code, Just line break" rows='3' required></textarea>
                   <button class="btn btn-sm btn-primary" type="submit">
@@ -81,8 +81,7 @@
                 <form action="?admin" method="POST">
                   <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCredited"
                     value="invalidCredited" />
-                  <input class="form-control form-control-sm my-1" name="creditTo"
-                    placeholder="Invalid all Credited To: " required />
+                  <input class="form-control form-control-sm my-1" name="creditTo"  list="creditors" placeholder="Invalid all Credited To:" required />
                   <button class="btn btn-sm btn-primary d-block" type="submit">
                     Change Credited to Invalid
                   </button>

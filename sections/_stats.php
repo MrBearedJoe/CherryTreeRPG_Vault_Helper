@@ -18,11 +18,17 @@ foreach ($jsonData['codes'] as $data) {
 
 $randomColors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light'];
 $creditors = '';
+$datalistOfCreditor = "<datalist id='creditors'>";
 foreach ($uniqueCreditors as $uniqueCreditor) {
   if ($uniqueCreditor == "(Hint)" || $uniqueCreditor == "(Blank)") continue;
   $random_keys = array_rand($randomColors, 1);
   $creditors .= "<badge class='badge text-bg-{$randomColors[$random_keys]} mx-1'>@$uniqueCreditor</badge>";
+  $datalistOfCreditor .= "<option value='$uniqueCreditor'>$uniqueCreditor</options>";
 }
+$datalistOfCreditor .= "</datalist>";
+echo $datalistOfCreditor;
+
+
 $creditorsList = count($creditorsList);
 
 $randomCode = ($totalCount > 0) ? array_rand($jsonData['codes'], 1) : "";
