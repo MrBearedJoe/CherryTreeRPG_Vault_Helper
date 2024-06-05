@@ -32,9 +32,12 @@ if ($_POST['massAddCodes'] == "massAddCodes") {
 
 if ($_POST['importFile'] == "importFile" && $_FILES['csv']) {
 
+  //File data example:
+  //TRUE,0000000,name
+  //FALSE,0000010,name
+
   $tmpName = $_FILES['csv']['tmp_name'];
   $csvArr = array_map('str_getcsv', file($tmpName));
-  // print_r($csvArr);
   $count = 0;
 
   $jsonData = openFile($filePath);
@@ -42,8 +45,7 @@ if ($_POST['importFile'] == "importFile" && $_FILES['csv']) {
   $jsonData['logs'] = [];
 
   for ($i = 1; $i < count($csvArr); $i++) {
-    if ($csvArr[$i][0] == "TRUE" || $csvArr[$i][0] == "FALSE") "";
-    else continue;
+    if ($csvArr[$i][0] != "TRUE" && $csvArr[$i][0] != "FALSE") continue;
 
     $code_status = ($csvArr[$i][0] == "TRUE") ? "invalid" : "not_checked";
     $code_numbers = str_replace(" ", "", $csvArr[$i][1]);
