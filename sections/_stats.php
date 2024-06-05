@@ -63,7 +63,7 @@ echo "
           <div class='row'>
 
           ";
-if (!isset($_GET['admin'])) include_once "./sections/_user_form.html";
+// if (!isset($_GET['admin'])) include_once "./sections/_user_form.html";
 echo "
 
             <div class='col'>
