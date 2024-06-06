@@ -41,11 +41,11 @@ $uniqueCount = count($uniqueDigitsArr);
 $digitsNeededCount = count($randomCodeSplitArr);
 
 
-$invalidPercent = ($total_NotChecked_Count / $totalCount) * 100;
+$invalidPercent = ($totalCount > 0) ? ($total_NotChecked_Count / $totalCount) * 100 : 0;
 $invalidPercent = number_format($invalidPercent, 2, '.', '') . "%";
 
 
-$creditedPercent = ($creditedCount / $totalCount) * 100;
+$creditedPercent = ($totalCount > 0) ? ($creditedCount / $totalCount) * 100 : 0;
 $creditedPercent = number_format($creditedPercent, 2, '.', '') . "%";
 
 echo "
