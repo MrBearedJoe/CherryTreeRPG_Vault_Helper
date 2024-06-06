@@ -129,6 +129,7 @@ if ($_POST['invalidCodes'] == "invalidCodes") {
   $codes = explode("\n", str_replace("\r", "", $codes));
 
   foreach ($codes as $code) {
+    if ($code == "" || $code == " ") continue;
     if ($_POST['creditTo'] != "") $jsonData['codes'][$code]["credit"] = $_POST['creditTo'];
     $jsonData['codes'][$code]["status"] = "invalid";
   }
