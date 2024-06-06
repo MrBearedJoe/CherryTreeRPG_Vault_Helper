@@ -4,9 +4,11 @@ include_once "./template/header.html";
 $filePath = "./src/json.json";
 include_once "./_functions.php";
 
-$adminPass = ['AdamIsReallySexy'];
+$adminPasswords = [
+  'QWRhbUlzUmVhbGx5U2V4eQ==' //hint: adam
+];
 
-if (isset($_GET['admin']) && in_array($_GET['admin'], $adminPass)) include_once "./sections/_admin.php";
+if (isset($_GET['admin']) && in_array(base64_encode($_GET['admin']), $adminPasswords)) include_once "./sections/_admin.php";
 
 $jsonData = openFile($filePath);
 include_once "./sections/_stats.php";
