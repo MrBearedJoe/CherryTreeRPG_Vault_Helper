@@ -1,6 +1,4 @@
 <?php
-$jsonData = openFile($filePath);
-
 $totalCount = count($jsonData['codes']);
 $total_NotChecked_Count = 0;
 $creditedCount = 0;

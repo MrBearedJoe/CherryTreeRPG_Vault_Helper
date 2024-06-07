@@ -11,8 +11,10 @@ $adminPasswords = [
 if (isset($_GET['admin']) && in_array(base64_encode($_GET['admin']), $adminPasswords)) include_once "./sections/_admin.php";
 
 $jsonData = openFile($filePath);
-include_once "./sections/_stats.php";
-include_once "./sections/_list.php";
-include_once "./sections/_logs.php";
+if (!empty($jsonData['codes'])) {
+  include_once "./sections/_stats.php";
+  include_once "./sections/_list.php";
+  include_once "./sections/_logs.php";
+}
 
 include_once "./template/footer.html";
