@@ -99,6 +99,9 @@ if ($_POST['creditAdd'] == "creditAdd") {
   foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
   array_push($jsonData['logs'], ["Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);
+  $lastCodesPulledBtn = "
+  <button type='button' class='btn btn-light btn-sm' data-bs-toggle='modal' data-bs-target='#pulledCodes'>Last Codes Pulled</button>
+  ";
   echo "
   <div id='pulledCodes' class='modal' tabindex='-1'>
   <div class='modal-dialog modal-dialog-scrollable modal-sm'>
@@ -116,8 +119,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
     </div>
   </div>
 </div>
-<button type='button' class='btn btn-sm btn-dark p-0 m-0' data-bs-toggle='modal' data-bs-target='#pulledCodes'>
-</button>
+
   ";
 }
 
@@ -195,11 +197,11 @@ if ($_POST['hint'] == "hint") {
       <h5 class="card-header bg-danger text-white">
         <img src='./images/vein.png' alt='Admin picture of Vein' height='24' class='ms-2' style='margin-top:-0.4rem;border-radius: 3rem;'>
         Admin
-        <button type="button" class="btn btn-success btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#correctCodeModal">
+        <button type="button" class="btn btn-success btn-sm ms-2 mb-1" data-bs-toggle="modal" data-bs-target="#correctCodeModal">
           Correct Code
         </button>
 
-        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#generateNewCodesModal">
+        <button type="button" class="btn btn-warning btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#generateNewCodesModal">
           Generate New Codes and Add to List
         </button>
 
@@ -207,6 +209,8 @@ if ($_POST['hint'] == "hint") {
         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#sheetsImport">
           Import From Sheets (CSV)
         </button>
+
+        <?= $lastCodesPulledBtn ?>
 
       </h5>
 
