@@ -93,7 +93,7 @@ echo "
               </div>
             </div>
 
-            <div class='col'>
+            <div class='col-xl-4 col-lg-12 col-12 mt-sm-2 mt-xl-0'>
               <div class='card border-secondary'>
                 <h6 class='card-header p-1 bg-secondary text-white text-center'>Credits Go To</h6>
                 <div class='card-body p-1'>
