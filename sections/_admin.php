@@ -14,6 +14,7 @@ if ($_POST['massAddCodes'] == "massAddCodes") {
   if ($_POST['clearCodes'] == "yes") {
     $jsonData['codes'] = [];
     $jsonData['logs'] = [];
+    $jsonData['honts'] = [];
   }
 
   $codes = isset($_POST['codes']) ? $_POST['codes'] : "";
@@ -43,6 +44,7 @@ if ($_POST['importFile'] == "importFile" && $_FILES['csv']) {
   $jsonData = openFile($filePath);
   $jsonData['codes'] = [];
   $jsonData['logs'] = [];
+  $jsonData['hints'] = [];
 
   for ($i = 1; $i < count($csvArr); $i++) {
     if ($csvArr[$i][0] != "TRUE" && $csvArr[$i][0] != "FALSE") continue;
@@ -186,6 +188,13 @@ if ($_POST['hint'] == "hint") {
   foreach ($codesList as $codeList) $creditedList .= "$codeList\r";
 
   array_push($jsonData['logs'], ["Add Hint of {$_POST['digit']} at place {$_POST['place']} for codes: $creditedList"]);
+  array_push($jsonData['hints'], ["Digit: <b>{$_POST['digit']}</b> / Place: <b>{$_POST['place']}</b>"]);
+  updateFile($filePath, $jsonData);
+}
+
+if ($_POST['hintText'] == "hintText") {
+  $jsonData = openFile($filePath);
+  array_push($jsonData['hints'], [$_POST['text']]);
   updateFile($filePath, $jsonData);
 }
 
@@ -297,6 +306,19 @@ if ($_POST['hint'] == "hint") {
                   </div>
                   <div class="form-text text-secondary">
                     This will invalid all codes without this digit placement.
+                  </div>
+                </form>
+                <hr class='my-2'>
+                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
+                  <input type="hidden" name="hintText" value="hintText" />
+                  <div class="input-group input-group-sm mb-1">
+                    <input class="form-control" type="text" name="text" placeholder="Add Hint Text Here" required />
+                    <button class="btn btn-success" type="submit">
+                      Add Hint
+                    </button>
+                  </div>
+                  <div class="form-text text-secondary">
+                    This will add text above to "Digit Info" area.
                   </div>
                 </form>
               </div>

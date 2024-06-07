@@ -46,6 +46,12 @@ $invalidPercent = number_format($invalidPercent, 2, '.', '') . "%";
 $creditedPercent = ($totalCount > 0) ? ($creditedCount / $totalCount) * 100 : 0;
 $creditedPercent = number_format($creditedPercent, 2, '.', '') . "%";
 
+
+if (!empty($jsonData['hints'])) {
+  $ifHints = "";
+  foreach ($jsonData['hints'] as $key => $h) $ifHints .= "<BR><b>Hints: </b>{$h[0]}";
+}
+
 echo "
 
 <div class='row'>
@@ -71,6 +77,7 @@ echo "
                   Unique Numbers: <b>$uniqueCount</b> <BR>
                   Code Length: <b>$digitsNeededCount</b> <BR>
                   Numbers Needed: <b>$uniqueDigitsList</b>
+                  $ifHints
                 </div>
               </div>
             </div>
