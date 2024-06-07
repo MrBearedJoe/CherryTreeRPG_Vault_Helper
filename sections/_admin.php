@@ -109,15 +109,14 @@ if ($_POST['creditAdd'] == "creditAdd") {
       </div>
       <div class='modal-body' id='copyCodes'>
         <div class='d-grid'>
-          <button type='button' class='btn btn-sm btn-danger mb-1' >Copy (Under Construction)</button>
+          <button type='button' class='btn btn-sm btn-danger mb-1' onclick='copyCodes()'>Copy Codes</button>
         </div>
-        <textarea rows='$rowSize' class='form-control'>$creditedList</textarea>
+        <textarea rows='$rowSize' class='form-control' id='codesList'>$creditedList</textarea>
       </div>
     </div>
   </div>
 </div>
-<button type='button' class='btn btn-sm btn-primary' data-bs-toggle='modal' data-bs-target='#pulledCodes'>
-
+<button type='button' class='btn btn-sm btn-dark p-0 m-0' data-bs-toggle='modal' data-bs-target='#pulledCodes'>
 </button>
   ";
 }

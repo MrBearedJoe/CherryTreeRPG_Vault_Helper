@@ -2,40 +2,31 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script>
 
+function copyCodes(){
+  document.querySelector(`textarea#codesList`).select();
+  document.execCommand("copy");
+}
 
+if(document.querySelector(`#pulledCodes`)) {
+  const pulledCodesBtn = document.querySelector(`button[data-bs-target='#pulledCodes']`)
+  pulledCodesBtn.click('show')
+  pulledCodesBtn.remove()
+}
 
-  if(document.querySelector(`#pulledCodes`)) {
-    const copyBtn = document.querySelector(`#copyCodes button`)
-    
-    copyBtn.addEventListener("click", () => {
-      
-      let copyTextarea = document.querySelector(`#copyCodes textarea`)
-      console.log("🚀 ~ copyTextarea:", copyTextarea.value)
-      document.execCommand("copy");
-      copyTextArea.select();
-      window.getSelection().removeAllRanges();
-      
-    })
+function filterTable(checked) {
+  if(checked == "false") checked = false
+  localStorage.setItem(`Vault_invalidFilter`, checked)
 
-    const pulledCodesBtn = document.querySelector(`button[data-bs-target='#pulledCodes']`)
-    pulledCodesBtn.click('show')
-    pulledCodesBtn.remove()
-  }
-
-  function filterTable(checked) {
-    if(checked == "false") checked = false
-    localStorage.setItem(`Vault_invalidFilter`, checked)
-
-    const tableData = document.querySelectorAll(`table tr:has(td)`)
-    for (const i in tableData) {
-      if (tableData[i].children[1].textContent == "invalid" && !tableData[i].classList.contains('d-none')) {
-        tableData[i].classList.add(`d-none`)
-      } else {
-        if (tableData[i].classList.contains('d-none')) tableData[i].classList.remove(`d-none`)
-      }
+  const tableData = document.querySelectorAll(`table tr:has(td)`)
+  for (const i in tableData) {
+    if (tableData[i].children[1].textContent == "invalid" && !tableData[i].classList.contains('d-none')) {
+      tableData[i].classList.add(`d-none`)
+    } else {
+      if (tableData[i].classList.contains('d-none')) tableData[i].classList.remove(`d-none`)
     }
   }
- 
+}
+
 
 if(!localStorage.getItem(`Vault_invalidFilter`)) localStorage.setItem(`Vault_invalidFilter`, "true")
 let is_checked = localStorage.getItem(`Vault_invalidFilter`)
