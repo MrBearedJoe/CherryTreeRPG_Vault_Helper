@@ -3,38 +3,44 @@
 
     <div class='card border border-success bg-dark text-white'>
       <h6 class='card-header bg-success text-white'>
-        <img src='./images/codes.jpg' alt='Codes: Picture of codes' height='18' class='ms-2'
-          style='margin-top:-0.4rem;border-radius: 3rem;'>
+        <img src='./images/codes.jpg' alt='Codes: Picture of codes' height='18' class='ms-2' style='margin-top:-0.4rem;border-radius: 3rem;'>
         Codes
       </h6>
-      <span>
+      <!-- <span>
         <input type='checkbox' id='invalidFilter'>
         <label for='invalidFilter'>Hide invalid</label>
-      </span>
+      </span> -->
       <div class='card-body p-0'>
 
         <div id='successCode'></div>
 
-        <table class='table table-sm table-dark my-3 border'>
-          <tr>
-            <th class='no-select'>Code</th>
-            <th class='no-select'>Status</th>
-            <th class='no-select'>Credit</th>
-          </tr>
+        <table class='table table-sm table-striped table-hover table-dark my-3 border  caption-top mt-0'>
+          <caption>
+            <input type='checkbox' id='invalidFilter' class='ms-2'>
+            <label for='invalidFilter'>Hide invalid</label>
+          </caption>
+          <thead>
 
-          <?php
-          foreach ($jsonData['codes'] as $code => $data) {
-            $ifSuccess = ($data['status'] == "success") ? "data-success-code='$code'" : "";
-            $ifInvalid = ($data['status'] == "invalid") ? "text-decoration-line-through text-muted" : "";
-            echo "
+            <tr>
+              <th class='no-select'>Code</th>
+              <th class='no-select'>Status</th>
+              <th class='no-select'>Credit</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <?php
+            foreach ($jsonData['codes'] as $code => $data) {
+              $ifSuccess = ($data['status'] == "success") ? "data-success-code='$code'" : "";
+              $ifInvalid = ($data['status'] == "invalid") ? "text-decoration-line-through text-muted" : "";
+              echo "
             <tr>
               <td class='font-monospace $ifInvalid' style='letter-spacing: 0.25rem;' $ifSuccess>$code</td>
               <td class='no-select $ifInvalid'>{$data['status']}</td>
               <td class='no-select $ifInvalid'>{$data['credit']}</td>
             </tr>";
-          }
-          ?>
-
+            }
+            ?>
+          </tbody>
         </table>
       </div>
     </div>
