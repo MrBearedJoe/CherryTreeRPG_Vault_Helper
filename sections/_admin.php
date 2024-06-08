@@ -209,16 +209,18 @@ if ($_POST['hintText'] == "hintText") {
         <button type="button" class="btn btn-success btn-sm ms-2 mb-1" data-bs-toggle="modal" data-bs-target="#correctCodeModal">
           Correct Code
         </button>
-
-        <button type="button" class="btn btn-warning btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#generateNewCodesModal">
+        <?php if($login_type == "admin"){
+          echo "
+          <button type='button' class='btn btn-warning btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#generateNewCodesModal'>
           Generate New Codes and Add to List
-        </button>
-
-
-        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#sheetsImport">
+          </button>
+          
+          <button type='button' class='btn btn-info btn-sm' data-bs-toggle='modal' data-bs-target='#sheetsImport'>
           Import From Sheets (CSV)
-        </button>
-
+          </button>
+          ";
+        }
+        ?>
         <?= $lastCodesPulledBtn ?>
 
       </h5>

@@ -67,7 +67,7 @@ echo "
           <div class='row'>
 
           ";
-// if (!isset($_GET['admin'])) include_once "./sections/_user_form.html";
+if ($login_type == "user") include_once "./sections/_user_form.php";
 echo "
 
             <div class='col'>
