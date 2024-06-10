@@ -69,7 +69,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
   $count = 0;
   $codesList = [];
 
-  if ($_POST['random'] == "yes") {
+  if ($_POST['pullHow'] == "random") {
     $randomCount = 0;
     while ($randomCount != $_POST['numberOfCodes']) {
       $code = array_rand($jsonData['codes'], 1);
@@ -84,7 +84,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
       }
     }
   } else {
-
+    if ($_POST['pullHow'] == "fromBottom") $jsonData['codes'] = array_reverse($jsonData['codes'], true);
     foreach ($jsonData['codes'] as $code => $data) {
 
       if ($data['credit'] == "") {
@@ -95,6 +95,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
 
       if ($count == $_POST['numberOfCodes']) break;
     }
+    if ($_POST['pullHow'] == "fromBottom") $jsonData['codes'] = array_reverse($jsonData['codes'], true);
   }
 
   $rowSize = $_POST["numberOfCodes"] + 1;
@@ -204,12 +205,14 @@ if ($_POST['hintText'] == "hintText") {
   <div class="col-12 py-1 px-4">
     <div class="card border border-danger bg-dark text-white">
       <h5 class="card-header bg-danger text-white">
-        <img src='./images/vein.png' alt='Admin picture of Vein' height='24' class='ms-2' style='margin-top:-0.4rem;border-radius: 3rem;'>
+        <img src='./images/vein.png' alt='Admin picture of Vein' height='24' class='ms-2'
+          style='margin-top:-0.4rem;border-radius: 3rem;'>
         Admin
-        <button type="button" class="btn btn-success btn-sm ms-2 mb-1" data-bs-toggle="modal" data-bs-target="#correctCodeModal">
+        <button type="button" class="btn btn-success btn-sm ms-2 mb-1" data-bs-toggle="modal"
+          data-bs-target="#correctCodeModal">
           Correct Code
         </button>
-        <?php if($login_type == "admin"){
+        <?php if ($login_type == "admin") {
           echo "
           <button type='button' class='btn btn-warning btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#generateNewCodesModal'>
           Generate New Codes and Add to List
@@ -235,12 +238,18 @@ if ($_POST['hintText'] == "hintText") {
                 Pull Codes to distribute
               </h6>
               <div class="card-body p-2">
-                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
-                  <label class="form-label">Random Spots?
-                    <input type="checkbox" name="random" value="yes" /></label>
+                <form action="" method="POST">
+                  <label class="form-label" for='fromTop'>From Top?
+                    <input type="radio" name="pullHow" value="fromTop" id='fromTop' checked /></label>
+                  <label class="form-label" for="fromBottom">From Bottom?
+                    <input type="radio" name="pullHow" value="yes" id="fromBottom" /></label>
+                  <label class="form-label" for='random'>Random Spots?
+                    <input type="radio" name="pullHow" value="random" id='random' /></label>
                   <input class="form-control form-control-sm mb-1" type="hidden" name="creditAdd" value="creditAdd" />
-                  <input class="form-control form-control-sm mb-1" name="creditTo" placeholder="Credit To:" list="creditors" />
-                  <input class="form-control form-control-sm mb-1" type="number" step="1" name="numberOfCodes" placeholder="How many you need?" required />
+                  <input class="form-control form-control-sm mb-1" name="creditTo" placeholder="Credit To:"
+                    list="creditors" />
+                  <input class="form-control form-control-sm mb-1" type="number" step="1" name="numberOfCodes"
+                    placeholder="How many you need?" required />
                   <button class="btn btn-sm btn-primary" type="submit">
                     Get Codes
                   </button>
@@ -255,10 +264,14 @@ if ($_POST['hintText'] == "hintText") {
                 Change Codes to Invalid
               </h6>
               <div class="card-body p-2">
-                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
-                  <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCodes" value="invalidCodes" />
-                  <input class="form-control form-control-sm mb-1" name="creditTo" placeholder="Credit To (If not already) *optional" list="creditors" />
-                  <textarea class="form-control form-control-sm mb-1" name="codes" placeholder="Codes. One Per Line. No spaces after code, Just line break" rows='3' required></textarea>
+                <form action="" method="POST">
+                  <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCodes"
+                    value="invalidCodes" />
+                  <input class="form-control form-control-sm mb-1" name="creditTo"
+                    placeholder="Credit To (If not already) *optional" list="creditors" />
+                  <textarea class="form-control form-control-sm mb-1" name="codes"
+                    placeholder="Codes. One Per Line. No spaces after code, Just line break" rows='3'
+                    required></textarea>
                   <button class="btn btn-sm btn-primary" type="submit">
                     Change status of codes to Invalid
                   </button>
@@ -273,16 +286,19 @@ if ($_POST['hintText'] == "hintText") {
                 Invalid Credited Codes
               </h6>
               <div class="card-body p-2">
-                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
-                  <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCredited" value="invalidCredited" />
-                  <input class="form-control form-control-sm my-1" name="creditTo" list="creditors" placeholder="Invalid all Credited To:" required />
+                <form action="" method="POST">
+                  <input class="form-control form-control-sm mb-1" type="hidden" name="invalidCredited"
+                    value="invalidCredited" />
+                  <input class="form-control form-control-sm my-1" name="creditTo" list="creditors"
+                    placeholder="Invalid all Credited To:" required />
                   <button class="btn btn-sm btn-primary d-block" type="submit">
                     Change Credited to Invalid
                   </button>
                 </form>
                 <hr class="mx-0 bg-white" />
-                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
-                  <input class="form-control form-control-sm mb-1" type="hidden" name="invalidAllCredited" value="invalidAllCredited" />
+                <form action="" method="POST">
+                  <input class="form-control form-control-sm mb-1" type="hidden" name="invalidAllCredited"
+                    value="invalidAllCredited" />
                   <button class="btn btn-sm btn-danger d-block" type="submit">
                     Change All Credited to Invalid
                   </button>
@@ -297,11 +313,13 @@ if ($_POST['hintText'] == "hintText") {
                 Got a Hint?
               </h6>
               <div class="card-body p-2">
-                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
+                <form action="" method="POST">
                   <input type="hidden" name="hint" value="hint" />
                   <div class="input-group input-group-sm mb-1">
-                    <input class="form-control" type="number" pattern="[0-9]{1}" min="0" max="9" name="digit" placeholder="Digit" required />
-                    <input class="form-control" type="number" pattern="[1-7]{1}" min="1" max="7" name="place" placeholder="Placement" required />
+                    <input class="form-control" type="number" pattern="[0-9]{1}" min="0" max="9" name="digit"
+                      placeholder="Digit" required />
+                    <input class="form-control" type="number" pattern="[1-7]{1}" min="1" max="7" name="place"
+                      placeholder="Placement" required />
                     <button class="btn btn-success" type="submit">
                       Add Hint
                     </button>
@@ -311,7 +329,7 @@ if ($_POST['hintText'] == "hintText") {
                   </div>
                 </form>
                 <hr class='my-2'>
-                <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
+                <form action="" method="POST">
                   <input type="hidden" name="hintText" value="hintText" />
                   <div class="input-group input-group-sm mb-1">
                     <input class="form-control" type="text" name="text" placeholder="Add Hint Text Here" required />
@@ -341,7 +359,7 @@ if ($_POST['hintText'] == "hintText") {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
+        <form action="" method="POST">
           <div class="input-group input-group-sm">
             <input class="form-control" type="numbers" name="success" placeholder="Correct Code!!" />
             <button class="btn btn-sm btn-success" type="submit">
@@ -369,7 +387,8 @@ if ($_POST['hintText'] == "hintText") {
           <h5 class="card-header bg-success text-white">Generate Codes and Add to Form below</h5>
           <div class='card-body p-2'>
             <label class="form-label">Unique Digits <em>ex: 1,2,3,</em></label>
-            <input class="form-control form-control-sm" type="numbers" name="digits" placeholder="Digits: ex: 1,2,3,4,5" />
+            <input class="form-control form-control-sm" type="numbers" name="digits"
+              placeholder="Digits: ex: 1,2,3,4,5" />
             <label class="form-label">Code Length</label>
             <input class="form-control form-control-sm" type="numbers" name="codeLength" placeholder="How Many?" />
             <button class="btn btn-sm btn-success my-2" type="button" onclick="generateNewCodes()">
@@ -383,11 +402,12 @@ if ($_POST['hintText'] == "hintText") {
         <div class='card p-0 border-danger'>
           <h5 class="card-header bg-danger text-white">Mass Add/Replace in list.</h5>
           <div class='card-body p-2'>
-            <form action="?admin=<?= $_GET['admin'] ?>" method="POST">
+            <form action="" method="POST">
               <input type="hidden" name="massAddCodes" value="massAddCodes" />
               <label class="form-label">Clear Current Codes?</label>
               <input type="checkbox" name="clearCodes" value="yes" checked />
-              <textarea class="form-control form-control-sm mb-1" name="codes" placeholder="Codes. One Per Line" rows='3' required></textarea>
+              <textarea class="form-control form-control-sm mb-1" name="codes" placeholder="Codes. One Per Line"
+                rows='3' required></textarea>
               <button class="btn btn-sm btn-danger" type="submit">
                 New/Add Codes to List
               </button>
@@ -415,7 +435,7 @@ if ($_POST['hintText'] == "hintText") {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="?admin=<?= $_GET['admin'] ?>" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <input type="hidden" name='importFile' value='importFile'>
             <label for="formFile" class="form-label">Download Codes from Google Sheet with CSV format</label>
@@ -431,31 +451,31 @@ if ($_POST['hintText'] == "hintText") {
 </div>
 
 <script>
-  function generateCombinations(digits, length) {
-    let combinations = [];
-    const recursiveGenerate = (prefix, remainingLength) => {
-      if (remainingLength === 0) {
-        combinations.push(prefix);
-        return;
-      }
-      for (let digit of digits) {
-        recursiveGenerate(prefix + digit, remainingLength - 1);
-      }
-    };
-    recursiveGenerate("", length);
-    return combinations.filter((combination) => {
-      return digits.every((digit) => combination.includes(digit));
-    });
-  }
-
-  function generateNewCodes() {
-    const digits = document.querySelector(`#generateCodesForm input[name="digits"]`).value.split(",")
-    let length = document.querySelector(`#generateCodesForm input[name="codeLength"]`).value
-
-    const combinations = generateCombinations(digits, length);
-    combinations.value = ``
-    for (let c of combinations) {
-      document.querySelector(`#generateCodesForm textarea[name="codes"]`).value += `${c}\r\n`;
+function generateCombinations(digits, length) {
+  let combinations = [];
+  const recursiveGenerate = (prefix, remainingLength) => {
+    if (remainingLength === 0) {
+      combinations.push(prefix);
+      return;
     }
+    for (let digit of digits) {
+      recursiveGenerate(prefix + digit, remainingLength - 1);
+    }
+  };
+  recursiveGenerate("", length);
+  return combinations.filter((combination) => {
+    return digits.every((digit) => combination.includes(digit));
+  });
+}
+
+function generateNewCodes() {
+  const digits = document.querySelector(`#generateCodesForm input[name="digits"]`).value.split(",")
+  let length = document.querySelector(`#generateCodesForm input[name="codeLength"]`).value
+
+  const combinations = generateCombinations(digits, length);
+  combinations.value = ``
+  for (let c of combinations) {
+    document.querySelector(`#generateCodesForm textarea[name="codes"]`).value += `${c}\r\n`;
   }
+}
 </script>

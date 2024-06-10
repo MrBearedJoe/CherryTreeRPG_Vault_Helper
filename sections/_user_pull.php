@@ -6,7 +6,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
   $count = 0;
   $codesList = [];
 
-  if ($_POST['random'] == "yes") {
+  if ($_POST['pullHow'] == "random") {
     $randomCount = 0;
     while ($randomCount != $_POST['numberOfCodes']) {
       $code = array_rand($jsonData['codes'], 1);
@@ -21,6 +21,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
       }
     }
   } else {
+    if ($_POST['pullHow'] == "fromBottom") $jsonData['codes'] = array_reverse($jsonData['codes'], true);
 
     foreach ($jsonData['codes'] as $code => $data) {
 
@@ -32,6 +33,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
 
       if ($count == $_POST['numberOfCodes']) break;
     }
+    if ($_POST['pullHow'] == "fromBottom") $jsonData['codes'] = array_reverse($jsonData['codes'], true);
   }
 
   $rowSize = $_POST["numberOfCodes"] + 1;
