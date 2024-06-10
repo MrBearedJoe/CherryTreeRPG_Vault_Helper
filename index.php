@@ -24,9 +24,15 @@ $users_filePath = "./src/users.json";
 $users = openFile($users_filePath);
 $adminPasswords = $users['admin'];
 $modPasswords = $users['mod'];
-if ($login_type == "admin" && in_array(base64_encode($login_as), $adminPasswords)) include_once "./sections/_admin.php";
-elseif ($login_type == "mod" && in_array(base64_encode($login_as), $modPasswords)) include_once "./sections/_admin.php";
+
+if (($login_type == "admin" && !in_array(base64_encode($login_as), $adminPasswords)) || ($login_type == "mod" && !in_array(base64_encode($login_as), $modPasswords))) {
+  echo "<meta http-equiv='refresh' content=\"0; url=./login/out.php?alert=Entered Wrong Password!\">";
+  die();
+}
+
+if (($login_type == "admin" && in_array(base64_encode($login_as), $adminPasswords)) || ($login_type == "mod" && in_array(base64_encode($login_as), $modPasswords))) include_once "./sections/_admin.php";
 elseif ($login_type == "user" && isset($_GET['user'])) include_once "./sections/_user_pull.php";
+
 
 $jsonData = openFile($filePath);
 if (!empty($jsonData['codes'])) {
