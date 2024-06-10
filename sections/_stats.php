@@ -62,6 +62,7 @@ echo "
         <h5 class='card-header bg-primary text-white p-1'>
           <img src='./images/vault.png' alt='Stats: image of Vault door' height='18' class='ms-3' style='margin-top:-0.4rem;'> 
           Stats
+          <a class='btn btn-sm btn-light align-right' href='./login/out.php'>Logout</a>
         </h5>
         <div class='card-body p-2'>
           <div class='row'>
