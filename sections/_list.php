@@ -1,9 +1,9 @@
-<div class='row'>
-  <div class='col-12 py-1 px-4'>
+  <div class='col-md-6 col-sm-12 py-1 px-4'>
 
     <div class='card border border-success bg-dark text-white'>
       <h6 class='card-header bg-success text-white'>
-        <img src='./images/codes.jpg' alt='Codes: Picture of codes' height='18' class='ms-2' style='margin-top:-0.4rem;border-radius: 3rem;'>
+        <img src='./images/codes.jpg' alt='Codes: Picture of codes' height='18' class='ms-2'
+          style='margin-top:-0.4rem;border-radius: 3rem;'>
         Codes
       </h6>
       <!-- <span>
@@ -45,4 +45,3 @@
       </div>
     </div>
   </div>
-</div>
