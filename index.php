@@ -9,6 +9,7 @@ $login_as = ($vault_login[1]) ? $vault_login[1] : "";
 include_once "./template/header.html";
 
 $filePath = "./src/json.json";
+$filePath_backup = "./src/backup.json";
 include_once "./_functions.php";
 
 //might move to json file to add a remove pass from site

@@ -2,6 +2,7 @@
 if ($_POST['creditAdd'] == "creditAdd") {
   $_POST['creditTo'] = ($_POST['creditTo'] != "") ? $_POST['creditTo'] : "(Blank)";
   $jsonData = openFile($filePath);
+  updateFile($filePath_backup, $jsonData);
 
   $count = 0;
   $codesList = [];
