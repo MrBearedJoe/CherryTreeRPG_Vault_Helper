@@ -1,5 +1,1 @@
-{
-  "codes": {},
-  "logs": [],
-  "hints": []
-}
+["{\"codes\":{\"123\":{\"status\":\"not_checked\",\"credit\":\"jess\"},\"132\":{\"status\":\"not_checked\",\"credit\":\"jess\"},\"213\":{\"status\":\"not_checked\",\"credit\":\"\"},\"231\":{\"status\":\"not_checked\",\"credit\":\"\"},\"312\":{\"status\":\"not_checked\",\"credit\":\"\"},\"321\":{\"status\":\"not_checked\",\"credit\":\"\"}},\"logs\":[[\"Added Codes: 123\\r\\n132\\r\\n213\\r\\n231\\r\\n312\\r\\n321\\r\\n\"],[\"Credited jess to: 123\\r132\\r\"]],\"hints\":[],\"honts\":[]}"]
