@@ -1,4 +1,4 @@
-<div class='col-md-6 col-sm-12 py-1 px-4'>
+<div class='col-md col-sm-12 py-1 px-4'>
   <div class='card border border-info bg-dark text-white'>
     <h5 class='card-header bg-info text-dark p-1' data-bs-toggle='collapse' data-bs-target='#collapseLogs'>
       Logs

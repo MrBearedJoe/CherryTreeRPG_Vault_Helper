@@ -1,4 +1,4 @@
-  <div class='col-md-6 col-sm-12 py-1 px-4'>
+  <div class='col-md col-sm-12 py-1 px-4'>
 
     <div class='card border border-success bg-dark text-white'>
       <h6 class='card-header bg-success text-white' data-bs-toggle='collapse' data-bs-target='#collapseCodes'>
