@@ -212,7 +212,7 @@ if ($_POST['hintText'] == "hintText") {
         Correct Code
       </button>
       <?php if ($login_type == "admin") {
-          echo "
+        echo "
           <button type='button' class='btn btn-warning btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#generateNewCodesModal'>
           Generate New Codes and Add to List
           </button>
@@ -221,8 +221,8 @@ if ($_POST['hintText'] == "hintText") {
           Import From Sheets (CSV)
           </button>
           ";
-        }
-        ?>
+      }
+      ?>
       <?= $lastCodesPulledBtn ?>
 
     </h5>
@@ -238,13 +238,19 @@ if ($_POST['hintText'] == "hintText") {
             </h6>
             <div class="card-body p-2">
               <form action="" method="POST">
-                <label class="form-label" for='fromTop'>From Top?
-                  <input type="radio" name="pullHow" value="fromTop" id='fromTop' checked /></label>
-                <label class="form-label" for="fromBottom">From Bottom?
-                  <input type="radio" name="pullHow" value="yes" id="fromBottom" /></label>
-                <label class="form-label" for='random'>Random Spots?
-                  <input type="radio" name="pullHow" value="random" id='random' /></label>
-                <input class="form-control form-control-sm mb-1" type="hidden" name="creditAdd" value="creditAdd" />
+                <input class="form-control form-control-sm mb-1" type="hidden" name="creditAdd" value="creditAdd"
+                  autocomplete="off" />
+
+                <div class="btn-group mb-1" role="group">
+                  <input type="radio" class='btn-check' name="pullHow" value="fromTop" id='fromTop' autocomplete="off"
+                    checked />
+                  <label class="btn btn-sm  btn-outline-light" for='fromTop'>From Top?</label>
+                  <input type="radio" class='btn-check' name="pullHow" value="yes" id="fromBottom" autocomplete="off" />
+                  <label class="btn btn-sm  btn-outline-light" for="fromBottom">From Bottom?</label>
+                  <input type="radio" class='btn-check' name="pullHow" value="random" id='random' autocomplete="off" />
+                  <label class="btn btn-sm  btn-outline-light" for='random'>Random Spots?</label>
+                </div>
+
                 <input class="form-control form-control-sm mb-1" name="creditTo" placeholder="Credit To:"
                   list="creditors" />
                 <input class="form-control form-control-sm mb-1" type="number" step="1" name="numberOfCodes"
