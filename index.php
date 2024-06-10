@@ -1,4 +1,5 @@
 <?php
+
 // testing login system
 if (empty($_COOKIE['Vault_login'])) echo "<meta http-equiv='refresh' content=\"0; url=./login/\">";
 $vault_login = explode("-", $_COOKIE['Vault_login']);
