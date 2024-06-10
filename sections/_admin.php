@@ -262,18 +262,30 @@ if (isset($_GET['delUser'])) {
           <button type='button' class='btn btn-warning btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#generateNewCodesModal'>
           Generate New Codes and Add to List
           </button>
-          
+
+
+          <div class='btn-group'>
+
           <button type='button' class='btn btn-info btn-sm' data-bs-toggle='modal' data-bs-target='#sheetsImport'>
           Import File
           </button>
 
+          <button type='button' class='btn btn-lg btn-info btn-sm dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'>
+          <span class='visually-hidden'>Toggle Dropdown</span>
+        </button>
+        
+        <ul class='dropdown-menu'>
+        <li><a class='dropdown-item' href='./src/backup.json' download>
+          DL Backup
+          </a></li>
+          </ul>
+
+          </div>
+
+          
           <button type='button' class='btn btn-light btn-sm' data-bs-toggle='modal' data-bs-target='#userManager'>
           Users Manager
           </button>
-
-          <a class='btn btn-dark btn-sm' href='./src/backup.json' download>
-          DL Backup
-          </a>
           ";
       }
       ?>
