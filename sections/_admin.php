@@ -70,6 +70,11 @@ if ($_POST['importFile'] == "importFile" && $_FILES['csv']) {
     updateFile($filePath, $jsonData);
   }
 }
+if ($_POST['lastSave'] == "lastSave") {
+  $jsonData = openFile($filePath_backup);
+  updateFile($filePath, $jsonData);
+}
+
 
 
 if ($_POST['creditAdd'] == "creditAdd") {
@@ -499,6 +504,16 @@ if (isset($_GET['delUser'])) {
             <input class="form-control" type="file" name='csv' accept=".csv,.json" required>
             <button class="btn btn-sm btn-success" type="submit">
               Upload
+            </button>
+          </div>
+        </form>
+        <hr>
+        <form action="" method="POST">
+          <label for="formFile" class="form-label">Use Last save on site.</label>
+          <div class="input-group input-group-sm">
+            <input type="hidden" name='lastSave' value='lastSave'>
+            <button class="btn btn-sm btn-success" type="submit">
+              Load From Last Backup
             </button>
           </div>
         </form>
