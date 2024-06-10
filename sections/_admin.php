@@ -68,7 +68,6 @@ if ($_POST['importFile'] == "importFile" && $_FILES['csv']) {
     $jsonData = file($tmpName);
     $jsonData = json_decode($jsonData[0], true);
     updateFile($filePath, $jsonData);
-
   }
 }
 
@@ -494,7 +493,7 @@ if (isset($_GET['delUser'])) {
       <div class="modal-body">
 
         <form action="" method="POST" enctype="multipart/form-data">
-          <label for="formFile" class="form-label">Download Codes from Google Sheet with CSV format</label>
+          <label for="formFile" class="form-label">Download CSV from Google Sheet or backup.json file.</label>
           <div class="input-group input-group-sm">
             <input type="hidden" name='importFile' value='importFile'>
             <input class="form-control" type="file" name='csv' accept=".csv,.json" required>
