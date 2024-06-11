@@ -120,7 +120,7 @@ if ($_POST['creditAdd'] == "creditAdd") {
   array_push($jsonData['logs'], ["Credited {$_POST['creditTo']} to: $creditedList"]);
   updateFile($filePath, $jsonData);
   $lastCodesPulledBtn = "
-  <button type='button' class='btn btn-light btn-sm' data-bs-toggle='modal' data-bs-target='#pulledCodes'>Last Codes Pulled</button>
+  <button type='button' class='btn btn-dark btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#pulledCodes'>Last Codes Pulled</button>
   ";
   echo "
   <div id='pulledCodes' class='modal' tabindex='-1'>
@@ -260,32 +260,28 @@ if (isset($_GET['delUser'])) {
       <?php if ($login_type == "admin") {
         echo "
           <button type='button' class='btn btn-warning btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#generateNewCodesModal'>
-          Generate New Codes and Add to List
+          Add New Codes/Reset Codes
           </button>
 
 
           <div class='btn-group'>
-
-          <button type='button' class='btn btn-info btn-sm' data-bs-toggle='modal' data-bs-target='#sheetsImport'>
-          Import File
-          </button>
-
-          <button type='button' class='btn btn-lg btn-info btn-sm dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'>
-          <span class='visually-hidden'>Toggle Dropdown</span>
-        </button>
-        
-        <ul class='dropdown-menu'>
-        <li><a class='dropdown-item' href='./src/backup.json' download>
-          DL Backup
-          </a></li>
-          </ul>
-
+            <button type='button' class='btn btn-info btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#sheetsImport'>
+              Import File
+            </button>
+            <button type='button' class='btn btn-lg btn-info btn-sm mb-1 dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'>
+              <span class='visually-hidden'>Toggle Dropdown</span>
+            </button>
+            <ul class='dropdown-menu'>
+              <li><a class='dropdown-item' href='./src/backup.json' download>
+              DL Backup</a></li>
+            </ul>
           </div>
 
           
-          <button type='button' class='btn btn-light btn-sm' data-bs-toggle='modal' data-bs-target='#userManager'>
-          Users Manager
+          <button type='button' class='btn btn-light btn-sm mb-1' data-bs-toggle='modal' data-bs-target='#userManager'>
+          User Manager
           </button>
+
           ";
       }
       ?>
@@ -433,7 +429,7 @@ if (isset($_GET['delUser'])) {
       <div class="modal-body">
         <form action="" method="POST">
           <div class="input-group input-group-sm">
-            <input class="form-control" type="numbers" name="success" placeholder="Correct Code!!" />
+            <input class="form-control" type="number" name="success" placeholder="Correct Code!!" />
             <button class="btn btn-sm btn-success" type="submit">
               Cracked
             </button>
@@ -459,12 +455,12 @@ if (isset($_GET['delUser'])) {
           <h5 class="card-header bg-success text-white">Generate Codes and Add to Form below</h5>
           <div class='card-body p-2'>
             <label class="form-label">Unique Digits <em>ex: 1,2,3,</em></label>
-            <input class="form-control form-control-sm" type="numbers" name="digits"
+            <input class="form-control form-control-sm" type="number" name="digits"
               placeholder="Digits: ex: 1,2,3,4,5" />
             <label class="form-label">Code Length</label>
-            <input class="form-control form-control-sm" type="numbers" name="codeLength" placeholder="How Many?" />
+            <input class="form-control form-control-sm" type="number" name="codeLength" placeholder="How Long?" />
             <button class="btn btn-sm btn-success my-2" type="button" onclick="generateNewCodes()">
-              Generate and Add Codes to Textarea
+              Generate & Add Codes to Form Below
             </button>
           </div>
         </div>
