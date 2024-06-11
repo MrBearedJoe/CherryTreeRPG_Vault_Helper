@@ -4,14 +4,15 @@ $total_NotChecked_Count = 0;
 $creditedCount = 0;
 $creditorsList = [];
 $uniqueCreditors = [];
-
-foreach ($jsonData['codes'] as $data) {
+$successAlert = "";
+foreach ($jsonData['codes'] as $code => $data) {
   if ($data['status'] == "invalid") $total_NotChecked_Count++;
   if ($data['credit'] != "") {
     $creditedCount++;
     $creditorsList[$data['credit']] = $data['credit'];
     if (!in_array($data['credit'], $uniqueCreditors)) array_push($uniqueCreditors, $data['credit']);
   }
+  if ($data['status'] == "success") $successAlert .= "<div class='col-12 text-center '><div class='alert alert-success p-2  placeholder-glow' role='alert'><h4 class='alert-heading'>Cracked! The code is: <b>$code</b></h4></div> </div>";
 }
 
 $randomColors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light'];
@@ -65,7 +66,7 @@ echo "
         </h5>
         <div class='card-body p-2'>
           <div class='row'>
-
+          $successAlert
           ";
 if ($login_type == "user") include_once "./sections/_user_form.php";
 echo "

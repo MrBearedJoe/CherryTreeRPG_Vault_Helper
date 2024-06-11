@@ -60,21 +60,6 @@ if(inputChecked != is_checked) {
   invalidFilter.checked = is_checked
   filterTable(is_checked)
 }
-
-
- setTimeout(() => {
-    const successCodeTr = document.querySelector(`td[data-success-code]`)
-    if (successCodeTr) {
-      const successCodeDiv = document.querySelector(`div#successCode`)
-      const theSuccessText = successCodeTr.textContent
-      const alert = `
-      <div class="alert alert-success m-4 p-2" role="alert">
-      <h4 class="alert-heading">Cracked! The code is: <b>${theSuccessText}</b></h4>
-      </div>
-      `
-      successCodeDiv.innerHTML = alert
-    }
-  }, 0)
   </script>
 </body>
 
