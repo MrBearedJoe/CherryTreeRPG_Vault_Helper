@@ -86,19 +86,47 @@ if ($_POST['creditAdd'] == "creditAdd") {
   $codesList = [];
 
   if ($_POST['pullHow'] == "random") {
-    $randomCount = 0;
-    while ($randomCount != $_POST['numberOfCodes']) {
-      $code = array_rand($jsonData['codes'], 1);
-      if (
-        $jsonData['codes'][$code]['credit'] == ""
-        && $jsonData['codes'][$code]['status'] == "not_checked"
-      ) {
 
-        $randomCount++;
+    $divideByRange = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+    $divideByIndex = array_rand($divideByRange, 1);
+    $divideBy = $divideByRange[$divideByIndex];
+    $total_count = count($jsonData['codes']);
+    $start = round($total_count / $divideBy);
+
+    $randomSpotCount = 0;
+    $pulledCount = 0;
+
+    foreach ($jsonData['codes'] as $code => $data) {
+      $randomSpotCount++;
+
+      if (
+        $randomSpotCount >= $start
+        && $data['credit'] == ""
+        && $data['status'] == "not_checked"
+      ) {
+        $pulledCount++;
         $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
         array_push($codesList, $code);
       }
+
+      if ($pulledCount >= $_POST['numberOfCodes']) break;
     }
+
+    //OLD RANDOM
+    // $randomCount = 0;
+    // while ($randomCount != $_POST['numberOfCodes']) {
+    //   $code = array_rand($jsonData['codes'], 1);
+    //   if (
+    //     $jsonData['codes'][$code]['credit'] == ""
+    //     && $jsonData['codes'][$code]['status'] == "not_checked"
+    //   ) {
+
+    //     $randomCount++;
+    //     $jsonData['codes'][$code]['credit'] = $_POST['creditTo'];
+    //     array_push($codesList, $code);
+    //   }
+    // }
+
   } else {
     if ($_POST['pullHow'] == "fromBottom") $jsonData['codes'] = array_reverse($jsonData['codes'], true);
     foreach ($jsonData['codes'] as $code => $data) {
